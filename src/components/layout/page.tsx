@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Footer from '~/components/footer';
 import Header from '~/components/header';
-import { Helmet } from 'react-helmet';
 import { cn } from '~/utils';
 
 interface PageProps {
@@ -16,15 +16,13 @@ interface PageProps {
 
 function Page({ section, before, after, children, className, headerProps, footerProps, bodyProps, ...props }: React.PropsWithChildren<PageProps>) {
 	return <div {...bodyProps}>
-		{section && <Helmet>
+		<Helmet>
 			<title>{section ? `${section} | Valentin-Mario Paraschiv` : 'Valentin-Mario Paraschiv | Full-Stack Developer'}</title>
-		</Helmet>}
+		</Helmet>
 		<Header {...(headerProps ?? {})} />
 		{before ? before : ''}
-		<div className='px-[20px] py-[10px]'>
-			<div {...props} className={cn('container flex flex-col gap-[10px] min-h-[100vh] px-0 py-5', className)}>
-				{children}
-			</div>
+		<div {...props} className={cn('flex flex-col gap-[10px] min-h-[100vh] px-0 py-5', className)}>
+			{children}
 		</div>
 		{after ? after : ''}
 		<Footer {...(footerProps ?? {})} />

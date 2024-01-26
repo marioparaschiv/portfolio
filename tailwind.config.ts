@@ -19,11 +19,46 @@ const config: Config = {
 			},
 		},
 		extend: {
+			fontSize: {
+			},
 			colors: {
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
 				border: 'hsl(var(--border))',
-				ring: 'hsl(var(--ring))'
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				cursor: 'hsl(var(--cursor))',
+				background: 'hsl(var(--background))',
+				foreground: {
+					DEFAULT: 'hsl(var(--foreground))',
+					secondary: 'hsl(var(--foreground-secondary))',
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))',
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))',
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--foreground-secondary))',
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))',
+				},
+				floating: {
+					DEFAULT: 'hsl(var(--floating))',
+					foreground: 'hsl(var(--floating-foreground))',
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

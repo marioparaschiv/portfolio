@@ -1,13 +1,16 @@
 {
+	"include": [
+		"src"
+	],
 	"compilerOptions": {
-		"target": "ES2020",
+		"target": "esnext",
 		"useDefineForClassFields": true,
 		"lib": [
-			"ES2020",
+			"ES2023",
 			"DOM",
 			"DOM.Iterable"
 		],
-		"module": "ESNext",
+		"module": "esnext",
 		"skipLibCheck": true,
 		/* Bundler mode */
 		"moduleResolution": "bundler",
@@ -28,8 +31,5 @@
 				"*"
 			]
 		}
-	},
-	"include": [
-		"src"
-	]
+	}
 }
