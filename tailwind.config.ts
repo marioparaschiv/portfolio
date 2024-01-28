@@ -2,7 +2,6 @@ import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 
 const config: Config = {
-	darkMode: ['class', '[data-theme="dark"]'],
 	plugins: [animate],
 	content: [
 		'./pages/**/*.{ts,tsx}',
@@ -19,12 +18,14 @@ const config: Config = {
 			},
 		},
 		extend: {
-			fontSize: {
+			backgroundImage: {
+				'grid': 'url(/img/grid.png)'
 			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
+				brand: 'hsl(var(--brand))',
 				cursor: 'hsl(var(--cursor))',
 				background: 'hsl(var(--background))',
 				foreground: {

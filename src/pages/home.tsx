@@ -1,32 +1,23 @@
-import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
-import * as Constants from '~/constants';
+import Tag from '~/components/tag';
 
 export const path = '/';
 export const element = Home;
+export const order = 1;
 
 function Home() {
-	return <Page className='py-5'>
-		<main className="grid lg:grid-cols-2 mt-12 lg:mt-16 lg:pt-32 xl:pt-0 3xl:pt-32">
-			<div className='container justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full my-auto'>
-				<div className='lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36'>
-					<Typography className='text-center md:text-left font-semibold text-8xl md:text-9xl'>
-						Mario
-					</Typography>
-					<Typography colour='muted' className='text-center md:text-left font-semibold text-3xl'>
-						{Constants.Role}
-					</Typography>
-				</div>
+	return <Page className='p-0 flex min-h-screen w-screen items-center justify-center'>
+		<div className='relative flex h-screen w-full flex-col items-center justify-center gap-4 overflow-x-clip'>
+			<div className='absolute z-0 h-[1000px] w-[1000px] opacity-30 animate-in fade-in zoom-in-0 duration-1000 ease-out' style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(0, 0, 0, 0) 100%)' }} />
+			<Tag className='animate-in fade-in zoom-in-105 slide-in-from-bottom-8 duration-300'>
+				London, United Kingdom
+			</Tag>
+			<div className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-center text-5xl font-bold text-transparent animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 sm:text-6xl'>
+				Mario Paraschiv.
 			</div>
-			<div className='md:ml-auto mt-20 md:mt-0'>
-				<img
-					className='rounded-tr-[115px] lg:rounded-tl-[115px] lg:rounded-tr-[0px] pr-10 lg:pr-0'
-					src='/img/sunset.webp'
-					alt=''
-					loading='eager'
-					decoding='async'
-				/>
+			<div className='px-8 text-center text-sm font-medium text-neutral-400 animate-in fade-in zoom-in-105 slide-in-from-bottom-8 duration-700 sm:px-0 sm:text-base'>
+				Full stack developer devoted to creating fluid and easy to use software.
 			</div>
-		</main>
+		</div>
 	</Page>;
-};
+}

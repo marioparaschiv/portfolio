@@ -3,50 +3,33 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: 'Inria Sans';
-	font-style: normal;
+  font-family: 'Open Runde';
+  src: url(/fonts/OpenRunde-Regular.woff2) format('woff2');
 	font-weight: 400;
-	font-display: swap;
-	src: url(/fonts/InriaSans.woff2) format('woff2');
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+@font-face {
+  font-family: 'Open Runde';
+  src: url(/fonts/OpenRunde-Medium.woff2) format('woff2');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Open Runde';
+	src: url(/fonts/OpenRunde-Semibold.woff2) format('woff2');
+	font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Open Runde';
+  src: url(/fonts/OpenRunde-Bold.woff2) format('woff2');
+	font-weight: 700;
+}
+
 
 @layer base {
 	:root {
-		--background: 40 37% 92%;
-		--foreground: 240 10% 3.9%;
-		--foreground-secondary: 40 3% 37%;
-
-		--card: 0 0% 100%;
-		--card-foreground: 240 10% 3.9%;
-
-		--floating: 0 0% 100%;
-		--floating-foreground: 240 10% 3.9%;
-
-		--primary: 240 5.9% 10%;
-		--primary-foreground: 0 0% 98%;
-		--secondary: 40 3% 37%;
-		--secondary-foreground: 240 5.9% 10%;
-		--muted: 240 4.8% 95.9%;
-
-		--accent: 240 4.8% 95.9%;
-		--accent-foreground: 240 5.9% 10%;
-
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 240 5.9% 90%;
-		--input: 240 5.9% 90%;
-		--ring: 240 10% 3.9%;
-		--radius: 0.5rem;
-		--cursor: 0 0% 100%;
-		--scrollbar: 40 15% 60%;
-
-		color-scheme: light;
-		font-family: 'Inria Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
-	}
-
-	[data-theme='dark'] {
-		--background: 240 10% 3.9%;
+		--background: 0 0% 0%;
 		--foreground: 0 0% 98%;
 		--foreground-secondary: 240 5% 64.9%;
 
@@ -72,8 +55,10 @@
 		--ring: 240 4.9% 83.9%;
 		--cursor: 0 100% 100%;
 		--scrollbar: 0 0% 12.5%;
+		--brand: 228.9 77.4% 73.9%;
 
 		color-scheme: dark;
+		font-family: 'Open Runde', system-ui, Avenir, Helvetica, Arial, sans-serif;
 	}
 }
 
@@ -86,25 +71,6 @@
 	}
 }
 
-@keyframes reveal-dark {
-	from {
-		clip-path: polygon(-30% 0, -30% 0, -15% 100%, -10% 115%);
-	}
-	to {
-		clip-path: polygon(-30% 0, 130% 0, 115% 100%, -10% 115%);
-	}
-}
-
-@keyframes reveal-light {
-	from {
-		clip-path: polygon(130% 0, 130% 0, 115% 100%, 110% 115%);
-	}
-	to {
-		clip-path: polygon(130% 0, -30% 0, -15% 100%, 110% 115%);
-	}
-}
-
-
 ::-webkit-scrollbar {
 	width: 7.5px;
 	height: 7.5px;
@@ -116,64 +82,6 @@
 	border-radius: 10px;
 }
 
-*:hover .cursor-follower {
-	opacity: 1;
-}
-
 svg {
 	pointer-events: none;
-}
-
-/* Cube */
-::view-transition {
-  perspective: 1000px;
-  background: #000;
-  inset: 0;
-}
-
-::view-transition-group(root),
-::view-transition-image-pair(root) {
-  transform-style: preserve-3d;
-  isolation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  mix-blend-mode: normal;
-  backface-visibility: hidden;
-  animation: none;
-}
-
-@keyframes group-rotate {
-  to {
-    transform: rotateY(-90deg);
-  }
-}
-
-@keyframes fade-out-a-bit {
-  to {
-    opacity: 0.5;
-  }
-}
-
-@keyframes fade-in-a-bit {
-  from {
-    opacity: 0.5;
-  }
-}
-
-::view-transition-group(root) {
-  transform-origin: 50% 50% -50vw;
-  animation: 750ms ease forwards group-rotate;
-}
-
-::view-transition-old(root) {
-  animation: 750ms ease forwards fade-out-a-bit;
-}
-
-::view-transition-new(root) {
-  transform-origin: 0 0;
-  transform: rotateY(90deg);
-  inset: 0 auto 0 100%;
-  animation: 750ms ease forwards fade-in-a-bit;
 }
