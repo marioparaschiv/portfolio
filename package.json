@@ -3,6 +3,8 @@
 	"private": true,
 	"version": "1.0.0",
 	"type": "module",
+	"author": "Mario <mariovparaschiv@gmail.com> (github.com/localip)",
+	"license": "Unlicensed",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
