@@ -44,7 +44,7 @@ function Header(props: React.HTMLProps<HTMLElement>) {
 				<NavigationMenuList>
 					{Object.entries(Pages).sort(([, first], [, second]) => first.order - second.order).map(([name, instance]) =>
 						<NavigationMenuItem>
-							<NavigationMenuLink href={instance.path} className={cn('bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-md text-transparent cursor-pointer select-none transition-colors duration-200 font-semibold', location.pathname === instance.path && 'to-neutral-100 !text-transparent')} onClick={e => (e.preventDefault(), navigate(instance.path))}>
+							<NavigationMenuLink href={instance.path} className={cn('text-md cursor-pointer select-none transition-colors duration-200 font-semibold', location.pathname === instance.path && '!to-neutral-100')} onClick={e => (e.preventDefault(), navigate(instance.path))}>
 								{name}
 							</NavigationMenuLink>
 						</NavigationMenuItem>

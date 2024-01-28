@@ -46,7 +46,7 @@ const NavigationMenuLink = React.forwardRef<NavigationMenuLinkRef, NavigationMen
 	<NavigationMenuPrimitive.NavigationMenuLink
 		ref={ref}
 		className={cn(
-			'group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:text-accent-foreground focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+			'group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-md text-transparent hover:to-neutral-300 focus:to-neutral-200 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
 			className
 		)}
 		{...props}
