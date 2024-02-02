@@ -11,3 +11,5 @@ export const Clickables: Clickables = {
 };
 
 export const Role = 'Full-Stack Developer';
+
+export const TechnologiesOrder = ['language', 'database', 'framework', 'tooling'];

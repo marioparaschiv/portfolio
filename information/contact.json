@@ -1,0 +1,14 @@
+{
+	"Email": {
+		"text": "me@marioparaschiv.com",
+		"href": "mailto:me@marioparaschiv.com"
+	},
+	"GitHub": {
+		"text": "localip",
+		"href": "https://github.com/localip"
+	},
+	"LinkedIn": {
+		"text": "in/marioparaschiv",
+		"href": "https://linkedin.com/in/marioparaschiv"
+	}
+}

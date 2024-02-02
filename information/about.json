@@ -1,0 +1,123 @@
+{
+	"Information": {
+		"text": "I am driven by competitiveness, aiming to develop polished, performant, and beautifully designed applications. I strive for perfection and invest heavily in optimization, whether it's in my code or personal life.\n\nRecognizing the importance of self-care, I prioritize activities like working out and getting enough sleep, considering them crucial steps for promoting mental growth and accelerating my career as a Software Engineer."
+	},
+	"Journey": {
+		"text": "My coding journey commenced with Discord's API user experience enhancement using bots. It involved integrating a back-end service, API and website for streamlined user configuration, powered by OAuth2.\n\nProgressing further, I immersed myself in web development, mastering ReactJS and many popular technologies such as Tailwind CSS, Next.js and animation libraries to achieve the peak visual experience."
+	},
+	"Proficiency": {
+		"text": "TODO"
+	},
+	"Technologies": [
+		{
+			"icon": "TypeScript",
+			"name": "TypeScript",
+			"type": "language"
+		},
+		{
+			"icon": "JavaScript",
+			"name": "JavaScript",
+			"type": "language"
+		},
+		{
+			"icon": "Go",
+			"name": "Go",
+			"type": "language"
+		},
+		{
+			"icon": "React",
+			"name": "React.js",
+			"type": "framework"
+		},
+		{
+			"icon": "Next",
+			"name": "Next.js",
+			"type": "framework"
+		},
+		{
+			"icon": "Kotlin",
+			"name": "Kotlin",
+			"type": "language"
+		},
+		{
+			"icon": "PostgreSQL",
+			"name": "PostgreSQL",
+			"type": "database"
+		},
+		{
+			"icon": "ObjectiveC",
+			"name": "Objective C",
+			"type": "language"
+		},
+		{
+			"icon": "Swift",
+			"name": "Swift",
+			"type": "language"
+		},
+		{
+			"icon": "Redis",
+			"name": "Redis",
+			"type": "database"
+		},
+		{
+			"icon": "MongoDB",
+			"name": "MongoDB",
+			"type": "database"
+		},
+		{
+			"icon": "Git",
+			"name": "Git",
+			"type": "tooling"
+		},
+		{
+			"icon": "Docker",
+			"name": "Docker",
+			"type": "tooling"
+		},
+		{
+			"icon": "Svelte",
+			"name": "Svelte",
+			"type": "framework"
+		},
+		{
+			"icon": "CPlusPlus",
+			"name": "C++",
+			"type": "language"
+		},
+		{
+			"icon": "HTML",
+			"name": "HTML",
+			"type": "language"
+		},
+		{
+			"icon": "Tailwind",
+			"name": "Tailwind CSS",
+			"type": "framework"
+		},
+		{
+			"icon": "SCSS",
+			"name": "SCSS/SASS",
+			"type": "framework"
+		},
+		{
+			"icon": "SQLite",
+			"name": "SQLite",
+			"type": "database"
+		},
+		{
+			"icon": "Electron",
+			"name": "Electron",
+			"type": "framework"
+		},
+		{
+			"icon": "AWS",
+			"name": "AWS (Amazon)",
+			"type": "tooling"
+		},
+		{
+			"icon": "Python",
+			"name": "Python",
+			"type": "language"
+		}
+	]
+}

@@ -6,10 +6,10 @@ export const element = Home;
 export const order = 1;
 
 function Home() {
-	return <Page className='p-0 flex min-h-screen w-screen items-center justify-center'>
+	return <Page className='p-0 flex min-h-screen w-screen items-center justify-center overflow-hidden'>
 		<div className='relative flex h-screen w-full flex-col items-center justify-center gap-4 overflow-x-clip'>
 			<div className='absolute z-0 h-[1000px] w-[1000px] opacity-30 animate-in fade-in zoom-in-0 duration-1000 ease-out' style={{ background: 'radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(0, 0, 0, 0) 100%)' }} />
-			<Tag className='animate-in fade-in zoom-in-105 slide-in-from-bottom-8 duration-300'>
+			<Tag href='https://www.google.com/maps/place/London/' className='animate-in fade-in zoom-in-105 slide-in-from-bottom-8 duration-300'>
 				London, United Kingdom
 			</Tag>
 			<div className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-center text-5xl font-bold text-transparent animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 sm:text-6xl'>
