@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Linkedin, Mail } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Information from '~/../information/contact.json';
 import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
@@ -32,12 +32,18 @@ function Contact() {
 					color='blue'
 				/>
 				<ContactCard
-					center={true}
 					name='Email'
 					body={Information.Email.text}
 					href={Information.Email.href}
 					icon={<Mail size={24} />}
 					color='red'
+				/>
+				<ContactCard
+					name='Twitter / X'
+					body={Information.Twitter.text}
+					href={Information.Twitter.href}
+					icon={<Twitter size={24} />}
+					color='purple'
 				/>
 			</div>
 		</div>
@@ -51,11 +57,10 @@ interface ContactCardProps {
 	icon: React.ReactNode;
 	color: React.ComponentProps<typeof Card>['highlights'];
 	className?: string;
-	center?: boolean;
 }
 
-function ContactCard({ name, href, body, icon, color, className, center }: ContactCardProps) {
-	return <Link to={href} target='_blank' className={cn(center && 'md:[grid-column:1/-1] md:mx-auto md:my-0')}>
+function ContactCard({ name, href, body, icon, color, className }: ContactCardProps) {
+	return <Link to={href} target='_blank'>
 		<Card className={cn(className, 'min-w-[325px] cursor-pointer')} radius='sm' highlights={color}>
 			<div className='flex gap-4 items-center'>
 				{icon}
