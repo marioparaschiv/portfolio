@@ -55,8 +55,8 @@ interface ContactCardProps {
 }
 
 function ContactCard({ name, href, body, icon, color, className, center }: ContactCardProps) {
-	return <Link to={href} target='_blank' className={cn(center && '[grid-column:1/-1] mx-auto my-0')}>
-		<Card className={cn(className, 'w-[325px] cursor-pointer')} radius='sm' highlights={color}>
+	return <Link to={href} target='_blank' className={cn(center && 'md:[grid-column:1/-1] md:mx-auto md:my-0')}>
+		<Card className={cn(className, 'min-w-[325px] cursor-pointer')} radius='sm' highlights={color}>
 			<div className='flex gap-4 items-center'>
 				{icon}
 				<div className='flex flex-col justify-center'>
