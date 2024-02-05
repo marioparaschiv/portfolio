@@ -26,19 +26,19 @@ function About() {
 					highlights='red'
 					title='Information'
 					icon={<PersonStanding />}
-					body={<span className='whitespace-pre-wrap'>{Information.Information.text}</span>}
+					body={<span className='whitespace-pre-wrap'>{Information.Information.text.join('\n')}</span>}
 				/>
 				<Item
 					highlights='blue'
 					title='My Journey'
 					icon={<MapPin />}
-					body={<span className='whitespace-pre-wrap'>{Information.Journey.text}</span>}
+					body={<span className='whitespace-pre-wrap'>{Information.Journey.text.join('\n')}</span>}
 				/>
 				<Item
 					highlights='green'
 					title='Technologies'
 					icon={<Code2 />}
-					body={<span className='grid grid-cols-3 gap-y-1 gap-x-4 mt-1'>
+					body={<span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-4 mt-1'>
 						{Information.Technologies.sort((a, b) => TechnologiesOrder.indexOf(a.type) - TechnologiesOrder.indexOf(b.type)).map(technology => {
 							const Icon = Icons[technology.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -55,7 +55,7 @@ function About() {
 					highlights='purple'
 					title='My Proficiency'
 					icon={<Award />}
-					body={<span className='whitespace-pre-wrap'>{Information.Proficiency.text}</span>}
+					body={<span className='whitespace-pre-wrap'>{Information.Proficiency.text.join('\n')}</span>}
 				/>
 			</div>
 		</div>
@@ -80,23 +80,23 @@ const styles = {
 	})
 };
 
-function Item(props: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) {
+function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const isMedium = useBreakpoint('md');
 
 	return <Card
 		{...props}
-		className='lg:w-[500px] md:w-[350px] lg:h-[300px] h-auto overflow-hidden'
+		className='lg:w-[500px] w-auto lg:min-h-[325px] overflow-hidden'
 		onClick={() => setIsOpen(!isOpen)}
 	>
 		<div className='flex w-full flex-col truncate p-4'>
 			<div className='flex w-full items-center justify-between'>
 				<div className='flex w-full items-center gap-4'>
 					<div className={styles.icon({ highlights: props.highlights })}>
-						{props.icon}
+						{icon}
 					</div>
 					<Typography tag='h6' colour='white'>
-						{props.title}
+						{title}
 					</Typography>
 				</div>
 				<div className='flex text-white md:hidden'>
@@ -117,7 +117,7 @@ function Item(props: React.ComponentProps<typeof Card> & { title: string, body: 
 						}}
 					>
 						<div className='whitespace-normal truncate text-sm pt-4'>
-							{props.body}
+							{body}
 						</div>
 					</m.div>}
 				</AnimatePresence>

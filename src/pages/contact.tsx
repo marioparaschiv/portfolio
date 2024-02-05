@@ -11,7 +11,7 @@ export const element = Contact;
 export const order = 4;
 
 function Contact() {
-	return <Page section='Contact' className='p-0 flex min-h-screen w-screen items-center justify-center'>
+	return <Page section='Contact' className='p-0 flex min-h-screen w-screen items-center justify-center overflow-clip'>
 		<div className='flex items-center gap-8 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 w-full md:w-auto pt-20 md:pt-0'>
 			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
 				Contact me.

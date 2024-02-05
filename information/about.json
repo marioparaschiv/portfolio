@@ -1,12 +1,24 @@
 {
 	"Information": {
-		"text": "I am driven by competitiveness, aiming to develop polished, performant, and beautifully designed applications. I strive for perfection and invest heavily in optimization, whether it's in my code or personal life.\n\nRecognizing the importance of self-care, I prioritize activities like working out and getting enough sleep, considering them crucial steps for promoting mental growth and accelerating my career as a Software Engineer."
+		"text": [
+			"I am driven by competitiveness, aiming to develop polished, performant, and beautifully designed applications. I strive for perfection and invest heavily in optimization, whether it's in my code or personal life.",
+			"",
+			"Recognizing the importance of self-care, I prioritize activities like working out and getting enough sleep, considering them crucial steps for promoting mental growth and accelerating my career as a Software Engineer."
+		]
 	},
 	"Journey": {
-		"text": "My coding journey commenced with Discord's API user experience enhancement using bots. It involved integrating a back-end service, API and website for streamlined user configuration, powered by OAuth2.\n\nProgressing further, I immersed myself in web development, mastering ReactJS and many popular technologies such as Tailwind CSS, Next.js and animation libraries to achieve the peak visual experience."
+		"text": [
+			"My coding journey commenced with Discord's API user experience enhancement using bots. It involved integrating a back-end service, API and website for streamlined user configuration, powered by OAuth2.",
+			"",
+			"Progressing further, I immersed myself in web development, mastering ReactJS and many popular technologies such as Tailwind CSS, Next.js and animation libraries to achieve the peak visual experience."
+		]
 	},
 	"Proficiency": {
-		"text": "TODO"
+		"text": [
+			"As a full-stack developer, I'm proficient in both backend and frontend development. Specializing in managing databases, crafting robust server-side architectures, and optimizing performance, my skills include designing efficient algorithms, implementing data structures, and integrating APIs for seamless communication.",
+			"",
+			"On the frontend, I excel in modern solutions like React, Solid, and Svelte. This allows me to create user-friendly interfaces that seamlessly integrate with backend functionality."
+		]
 	},
 	"Technologies": [
 		{
@@ -108,6 +120,16 @@
 			"icon": "Electron",
 			"name": "Electron",
 			"type": "framework"
+		},
+		{
+			"icon": "Express",
+			"name": "Express.js",
+			"type": "framework"
+		},
+		{
+			"icon": "Firebase",
+			"name": "Firebase",
+			"type": "database"
 		},
 		{
 			"icon": "AWS",
