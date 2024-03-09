@@ -1,8 +1,8 @@
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '~/components/carousel';
+import Typography from '~/components/typography';
+import { Page } from '~/components/layout';
 import { Code } from 'lucide-react';
 import { useState } from 'react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
-import { Page } from '~/components/layout';
-import Typography from '~/components/typography';
 import { cn } from '~/utils';
 
 export const path = '/projects';
@@ -16,12 +16,7 @@ function Projects() {
 
 	return <Page section='Projects' className='p-0 flex min-h-screen items-center justify-center'>
 		{import.meta.env.DEV ? <>
-			<Carousel opts={{
-				watchResize(emblaApi, mutations) {
-					console.log('hi');
-					setIdx(emblaApi.selectedScrollSnap());
-				}, startIndex: 12 % 2 || 12 / 2
-			}} className='mx-24'>
+			<Carousel opts={{ startIndex: 12 % 2 || 12 / 2 }} className='mx-24'>
 				<div className='flex flex-col'>
 					<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 						{new Array(12).fill(null).map(() => <CarouselItem>
@@ -53,9 +48,8 @@ interface ProjectProps {
 }
 
 function Project(props: ProjectProps) {
-	const carousel = useCarousel();
-
-	const selected = Math.round(carousel.api?.selectedScrollSnap() ?? 0);
+	// const carousel = useCarousel();
+	// const selected = Math.round(carousel.api?.selectedScrollSnap() ?? 0);
 
 	return <div className='flex items-center justify-center overflow-hidden rounded-3xl relative border border-neutral-800 bg-neutral-900'>
 		<img
