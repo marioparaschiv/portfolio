@@ -10,7 +10,7 @@ export const element = Projects;
 export const order = 3;
 
 function Projects() {
-	const [idx, setIdx] = useState(0);
+	const [idx, /* setIdx */] = useState(0);
 	// const carousel = useCarousel();
 	// const selected = Math.round(carousel.api?.selectedScrollSnap() ?? 0);
 
