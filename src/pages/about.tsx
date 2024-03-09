@@ -89,7 +89,7 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 		className='lg:w-[500px] w-auto lg:min-h-[325px] overflow-hidden'
 		onClick={() => setIsOpen(!isOpen)}
 	>
-		<div className='flex w-full flex-col truncate p-4'>
+		<div className='flex w-full flex-col truncate p-2 md:p-4'>
 			<div className='flex w-full items-center justify-between'>
 				<div className='flex w-full items-center gap-4'>
 					<div className={styles.icon({ highlights: props.highlights })}>
@@ -107,18 +107,26 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 				<AnimatePresence>
 					{(isOpen || isMedium) && <m.div
 						style={{ overflow: 'hidden' }}
-						transition={{ type: 'spring', duration: 0.4, bounce: 0.1 }}
+						transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
 						initial={isMedium ? 'open' : 'collapsed'}
 						animate='open'
 						exit={isMedium ? 'open' : 'collapsed'}
 						variants={{
-							open: { opacity: 1, height: 'auto', scale: 1 },
-							collapsed: { opacity: 0, height: 0, scale: 0.95 }
+							open: {
+								opacity: 1,
+								height: 'auto',
+								scale: 1
+							},
+							collapsed: {
+								opacity: 0,
+								height: 0,
+								scale: 0.95
+							}
 						}}
 					>
-						<div className='whitespace-normal truncate text-sm pt-4'>
+						<m.div className='whitespace-normal truncate text-sm pt-4'>
 							{body}
-						</div>
+						</m.div>
 					</m.div>}
 				</AnimatePresence>
 			</LazyMotion>
