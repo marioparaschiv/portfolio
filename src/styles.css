@@ -57,6 +57,8 @@
 		--scrollbar: 0 0% 12.5%;
 		--brand: 228.9 77.4% 73.9%;
 
+		--radius: 10px;
+
 		color-scheme: dark;
 		font-family: 'Open Runde', system-ui, Avenir, Helvetica, Arial, sans-serif;
 	}

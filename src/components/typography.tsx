@@ -3,6 +3,8 @@ import { cn } from '~/utils';
 
 interface TypographyProps extends VariantProps<typeof TypographyVariants>, React.HTMLProps<HTMLElement> {
 	margin?: boolean;
+	border?: boolean;
+	padding?: boolean;
 }
 
 const TypographyVariants = cva({
@@ -31,10 +33,10 @@ const TypographyVariants = cva({
 	}
 });
 
-export function Typography({ tag, colour, margin = true, children, className }: TypographyProps) {
+export function Typography({ tag, colour, border = true, margin = true, padding = true, children, className }: TypographyProps) {
 	const Tag = tag as keyof JSX.IntrinsicElements ?? 'p';
 
-	return <Tag className={cn(TypographyVariants({ tag, colour }), className, !margin && '!m-0')}>
+	return <Tag className={cn(TypographyVariants({ tag, colour }), className, !margin && '!m-0', !border && '!border-none', !padding && '!p-0')}>
 		{children}
 	</Tag>;
 }

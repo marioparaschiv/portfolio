@@ -141,14 +141,21 @@ const Carousel = React.forwardRef<
 			api?.scrollNext();
 		}, [api]);
 
-		const handleKeyDown = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
-			if (event.key === 'ArrowLeft') {
-				event.preventDefault();
-				scrollPrev();
-			} else if (event.key === 'ArrowRight') {
-				event.preventDefault();
-				scrollNext();
+
+		React.useEffect(() => {
+			function onKeyDown(event: KeyboardEvent) {
+				if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					scrollPrev();
+				} else if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					scrollNext();
+				}
 			}
+
+			document.addEventListener('keydown', onKeyDown);
+
+			return () => document.removeEventListener('keydown', onKeyDown);
 		}, [scrollPrev, scrollNext]);
 
 		React.useEffect(() => {
@@ -190,8 +197,7 @@ const Carousel = React.forwardRef<
 					carouselRef,
 					api: api,
 					opts,
-					orientation:
-						orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+					orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
 					scrollPrev,
 					scrollNext,
 					canScrollPrev,
@@ -200,7 +206,6 @@ const Carousel = React.forwardRef<
 			>
 				<div
 					ref={ref}
-					onKeyDown={handleKeyDown}
 					className={cn('relative', className)}
 					role='region'
 					aria-roledescription='carousel'
@@ -248,7 +253,7 @@ const CarouselItem = React.forwardRef<
 			role='group'
 			aria-roledescription='slide'
 			className={cn(
-				'min-w-0 shrink-0 grow-0',
+				'min-w-0 shrink-0 grow-0 basis-1/2',
 				orientation === 'horizontal' ? 'pl-4' : 'pt-4',
 				className
 			)}
