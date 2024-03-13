@@ -1,5 +1,4 @@
 import { ChevronDown, Code2, MapPin, PersonStanding, Award } from 'lucide-react';
-import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
 import Information from '~/../information/about.json';
 import { useBreakpoint } from '~/components/hooks';
 import Typography from '~/components/typography';
@@ -103,33 +102,12 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<LazyMotion features={domAnimation}>
-				<AnimatePresence>
-					{(isOpen || isMedium) && <m.div
-						style={{ overflow: 'hidden' }}
-						transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
-						initial={isMedium ? 'open' : 'collapsed'}
-						animate='open'
-						exit={isMedium ? 'open' : 'collapsed'}
-						variants={{
-							open: {
-								opacity: 1,
-								height: 'auto',
-								scale: 1
-							},
-							collapsed: {
-								opacity: 0,
-								height: 0,
-								scale: 0.95
-							}
-						}}
-					>
-						<m.div className='whitespace-normal truncate text-sm pt-4'>
-							{body}
-						</m.div>
-					</m.div>}
-				</AnimatePresence>
-			</LazyMotion>
+
+			{(isOpen || isMedium) && <div style={{ overflow: 'hidden' }}>
+				<div className='whitespace-normal truncate text-sm pt-4'>
+					{body}
+				</div>
+			</div>}
 		</div>
 	</Card>;
 }
