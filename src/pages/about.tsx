@@ -1,8 +1,9 @@
-import { ChevronDown, Code2, MapPin, PersonStanding, Award } from 'lucide-react';
+import { Code2, MapPin, PersonStanding, Award, ChevronDown } from 'lucide-react';
+import { useState, type SVGProps, useRef, useEffect } from 'react';
+import { animated, useSpring } from '@react-spring/web';
 import Information from '~/../information/about.json';
 import { useBreakpoint } from '~/components/hooks';
 import Typography from '~/components/typography';
-import { useState, type SVGProps } from 'react';
 import { TechnologiesOrder } from '~/constants';
 import * as Icons from '~/components/icons';
 import { Page } from '~/components/layout';
@@ -81,12 +82,26 @@ const styles = {
 
 function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const ref = useRef<HTMLDivElement>(null);
+	const [height, setHeight] = useState(0);
 	const isMedium = useBreakpoint('md');
+
+	const collapsed = useSpring({
+		opacity: isOpen || isMedium ? 1 : 0,
+		maxHeight: `${isOpen || isMedium ? height : 0}px`,
+		transform: `scale(${isOpen ? 1 : 0.90})`
+	});
+
+	useEffect(() => {
+		if (ref.current) {
+			setHeight(ref.current.scrollHeight);
+		}
+	}, [ref, height]);
 
 	return <Card
 		{...props}
 		className='lg:w-[500px] w-auto lg:min-h-[325px] overflow-hidden'
-		onClick={() => setIsOpen(!isOpen)}
+		onClick={() => !isMedium && setIsOpen(!isOpen)}
 	>
 		<div className='flex w-full flex-col truncate p-2 md:p-4'>
 			<div className='flex w-full items-center justify-between'>
@@ -102,12 +117,11 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-
-			{(isOpen || isMedium) && <div style={{ overflow: 'hidden' }}>
-				<div className='whitespace-normal truncate text-sm pt-4'>
+			<animated.div style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
+				<div ref={ref} style={{ maxHeight: height }} className='whitespace-normal truncate text-sm pt-4'>
 					{body}
 				</div>
-			</div>}
+			</animated.div>
 		</div>
 	</Card>;
-}
+};
