@@ -19,6 +19,9 @@ const config: Config = {
 			},
 		},
 		extend: {
+			willChange: {
+				'accordion': 'opacity, transform, max-height, height'
+			},
 			backgroundImage: {
 				'grid': 'url(/img/grid.png)'
 			},

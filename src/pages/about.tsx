@@ -10,6 +10,7 @@ import { Page } from '~/components/layout';
 import Card from '~/components/card';
 import { cn } from '~/utils';
 import { cva } from 'cva';
+import React from 'react';
 
 export const path = '/about';
 export const element = About;
@@ -80,7 +81,7 @@ const styles = {
 	})
 };
 
-function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) {
+const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState(0);
@@ -96,7 +97,7 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 		if (ref.current) {
 			setHeight(ref.current.scrollHeight);
 		}
-	}, [ref, height]);
+	}, [ref]);
 
 	return <Card
 		{...props}
@@ -117,11 +118,11 @@ function Item({ title, icon, body, ...props }: React.ComponentProps<typeof Card>
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<animated.div style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
+			<animated.div className='will-change-accordion' style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
 				<div ref={ref} style={{ maxHeight: height }} className='whitespace-normal truncate text-sm pt-4'>
 					{body}
 				</div>
 			</animated.div>
 		</div>
 	</Card>;
-};
+});

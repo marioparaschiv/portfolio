@@ -13,19 +13,26 @@ export const order = 3;
 
 function Projects() {
 	return <Page section='Projects' className='p-0 flex min-h-screen items-center justify-center overflow-hidden'>
-		<div className='flex items-center gap-8 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
+		<div className='flex items-center gap-16 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
+			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
+				Projects.
+			</Typography>
 			{import.meta.env.DEV ? <>
-				<Carousel opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }} className='mx-24'>
+				<Carousel opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }}>
 					<div className='flex flex-col'>
 						<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 							{Information.map((project, index) => <CarouselItem key={index}>
 								<Project {...project} />
 							</CarouselItem>)}
 						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
 					</div>
-					<CarouselDots />
+					<div className='flex justify-center mt-6 mx-24'>
+						<CarouselDots />
+						<div className='flex items-center justify-center ml-auto gap-2'>
+							<CarouselPrevious />
+							<CarouselNext />
+						</div>
+					</div>
 				</Carousel>
 			</> : <>
 				<Code className='text-neutral-400' size={256} strokeWidth={2} />
@@ -41,9 +48,10 @@ function Project(props: ArrayToTuple<typeof Information>) {
 	return <div className='flex items-center justify-center overflow-hidden rounded-3xl relative border border-neutral-800 bg-neutral-900'>
 		<img
 			loading='lazy'
-			className='select-none w-auto h-auto'
+			className='select-none h-auto max-h-[35rem] object-cover'
 			alt={props.name}
 			src={props.thumbnail}
+			onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 		/>
 		<div className='absolute z-10 h-full w-full bg-gradient-to-t from-black/80 to-black/20'>
 			<div className='relative flex flex-col justify-center items-center h-full'>
@@ -87,7 +95,7 @@ function CarouselDots() {
 		return () => void carousel.api?.off('scroll', onSlideChange);
 	}, [carousel.api]);
 
-	return <div className='flex gap-2 mt-6 justify-center items-center'>
+	return <div className='flex gap-2 justify-center items-center'>
 		{Information.map((_, index) => <div
 			key={index}
 			className={cn('w-3 h-3 cursor-pointer rounded-full bg-neutral-800', idx === index && 'bg-white')}
