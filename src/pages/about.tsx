@@ -1,6 +1,6 @@
 import { Code2, MapPin, PersonStanding, Award, ChevronDown } from 'lucide-react';
 import { useState, type SVGProps, useRef, useEffect } from 'react';
-import { animated, useSpring } from '@react-spring/web';
+import { animated, easings, useSpring } from '@react-spring/web';
 import Information from '~/../information/about.json';
 import { useBreakpoint } from '~/components/hooks';
 import Typography from '~/components/typography';
@@ -90,7 +90,27 @@ const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<t
 	const collapsed = useSpring({
 		opacity: isOpen || isMedium ? 1 : 0,
 		maxHeight: `${isOpen || isMedium ? height : 0}px`,
-		transform: `scale(${isOpen ? 1 : 0.90})`
+		transform: `scale(${isOpen || isMedium ? 1 : 0.90})`,
+		config: (event) => {
+			switch (event) {
+				case 'opacity':
+					return {
+						easing: easings.easeInOutQuad,
+						duration: 425
+					};
+				case 'maxHeight':
+				case 'transform':
+					return {
+						easing: easings.easeInOutQuad,
+						duration: 400
+					};
+			}
+
+			return {
+				easing: easings.easeInOutQuad,
+				duration: 425
+			};
+		}
 	});
 
 	useEffect(() => {
@@ -118,8 +138,8 @@ const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<t
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<animated.div className='will-change-accordion' style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
-				<div ref={ref} style={{ maxHeight: height }} className='whitespace-normal truncate text-sm pt-4'>
+			<animated.div style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
+				<div ref={ref} className='whitespace-normal truncate text-sm pt-4'>
 					{body}
 				</div>
 			</animated.div>
