@@ -45,11 +45,25 @@ function Projects() {
 }
 
 function Project(props: ArrayToTuple<typeof Information>) {
+	const [width, setWidth] = useState<number>(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
+
+	useEffect(() => {
+		function onResize() {
+			setWidth(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
+		}
+
+		window.addEventListener('resize', onResize);
+
+		return () => window.removeEventListener('resize', onResize);
+	}, []);
+
 	return <div className='flex items-center justify-center overflow-hidden rounded-3xl relative border border-neutral-800 bg-neutral-900'>
 		<img
-			loading='lazy'
+			loading='eager'
+			decoding='async'
 			className='select-none h-auto max-h-[35rem] object-cover'
 			alt={props.name}
+			style={{ width }}
 			src={props.thumbnail}
 			onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 		/>
@@ -57,6 +71,7 @@ function Project(props: ArrayToTuple<typeof Information>) {
 			<div className='relative flex flex-col justify-center items-center h-full'>
 				<img
 					loading='eager'
+					decoding='async'
 					className={cn('h-12 mb-4 rounded-md', props.iconStyles)}
 					src={props.icon}
 				/>
@@ -71,7 +86,7 @@ function Project(props: ArrayToTuple<typeof Information>) {
 						{props.timeFrame}
 					</Typography>
 				</div>
-				<Button className='border-neutral-800 bg-neutral-900 gap-2 text-xs' size='sm' variant='outline'>
+				<Button className='border-neutral-800 bg-neutral-900 gap-2 text-xs pt-0 pb-0' size='sm' variant='outline'>
 					View project <ArrowRight size={14} />
 				</Button>
 			</div>
