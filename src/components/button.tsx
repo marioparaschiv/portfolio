@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from 'cva';
 import { Slot } from '@radix-ui/react-slot';
-import million from 'million';
 import * as React from 'react';
 import { cn } from '~/utils';
 
