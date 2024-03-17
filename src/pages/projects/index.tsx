@@ -6,19 +6,19 @@ import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
 import Button from '~/components/button';
 import { cn } from '~/utils';
+import { useNavigate } from 'react-router-dom';
 
 export const path = '/projects';
 export const element = Projects;
+
+export const header = true;
 export const order = 3;
 
 function Projects() {
 	return <Page section='Projects' className='p-0 flex min-h-screen items-center justify-center overflow-hidden'>
 		<div className='flex items-center gap-16 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
-			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
-				Projects.
-			</Typography>
 			{import.meta.env.DEV ? <>
-				<Carousel opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }}>
+				<Carousel className='h-full mt-5' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }}>
 					<div className='flex flex-col'>
 						<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 							{Information.map((project, index) => <CarouselItem key={index}>
@@ -46,6 +46,7 @@ function Projects() {
 
 function Project(props: ArrayToTuple<typeof Information>) {
 	const [width, setWidth] = useState<number>(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		function onResize() {
@@ -61,7 +62,7 @@ function Project(props: ArrayToTuple<typeof Information>) {
 		<img
 			loading='eager'
 			decoding='async'
-			className='select-none h-auto max-h-[35rem] object-cover'
+			className='select-none h-[35rem] object-cover'
 			alt={props.name}
 			style={{ width }}
 			src={props.thumbnail}
@@ -86,7 +87,11 @@ function Project(props: ArrayToTuple<typeof Information>) {
 						{props.timeFrame}
 					</Typography>
 				</div>
-				<Button className='border-neutral-800 bg-neutral-900 gap-2 text-xs pt-0 pb-0' size='sm' variant='outline'>
+				<Button
+					className='gap-2'
+					size='sm'
+					onClick={() => navigate('/projects/' + props.id)}
+				>
 					View project <ArrowRight size={14} />
 				</Button>
 			</div>

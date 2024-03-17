@@ -8,6 +8,8 @@ import { cn } from '~/utils';
 
 export const path = '/contact';
 export const element = Contact;
+
+export const header = true;
 export const order = 4;
 
 function Contact() {

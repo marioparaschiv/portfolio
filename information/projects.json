@@ -1,64 +1,40 @@
 [
 	{
 		"name": "Unbound",
+		"id": "unbound",
 		"type": "Mobile Application",
 		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
-		"icon": "/img/projects/unbound-icon.png",
-		"thumbnail": "/img/projects/unbound-thumbnail.png",
-		"images": []
-	},
-	{
-		"name": "Unbound",
-		"type": "Mobile Application",
-		"timeFrame": "Jan 2023 - Jan 2024",
+		"badge": {
+			"styles": "bg-green-600/30 border-green-600/40 text-green-600",
+			"text": "Production"
+		},
+		"responsibilities": [],
+		"technologies": [],
 		"icon": "/img/projects/unbound-icon.png",
 		"thumbnail": "/img/projects/unbound-thumbnail.png",
 		"images": []
 	},
 	{
 		"name": "Kiwa",
+		"id": "kiwa",
 		"type": "Website",
+		"url": "https://kiwasushi.vercel.app/",
 		"timeFrame": "Jan 2023 - Jan 2024",
+		"responsibilities": [],
+		"technologies": [],
+		"icon": "/img/projects/kiwa-icon.png",
+		"iconStyles": "ml-2",
+		"thumbnail": "/img/projects/kiwa-thumbnail.png",
+		"images": []
+	},
+	{
+		"name": "Enmity",
+		"id": "enmity",
+		"type": "Mobile Application",
+		"archived": true,
+		"timeFrame": "Jan 2023 - Jan 2024",
+		"responsibilities": [],
+		"technologies": [],
 		"icon": "/img/projects/kiwa-icon.png",
 		"iconStyles": "ml-2",
 		"thumbnail": "/img/projects/kiwa-thumbnail.png",

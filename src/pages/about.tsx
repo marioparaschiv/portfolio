@@ -14,9 +14,13 @@ import React from 'react';
 
 export const path = '/about';
 export const element = About;
+
+export const header = true;
 export const order = 2;
 
 function About() {
+	const isMedium = useBreakpoint('md');
+
 	return <Page section='About' className='p-0 flex min-h-screen w-screen items-center justify-center overflow-clip'>
 		<div className='flex items-center gap-8 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 w-full md:w-auto pt-20 md:pt-0'>
 			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
@@ -39,13 +43,13 @@ function About() {
 					highlights='green'
 					title='Technologies'
 					icon={<Code2 />}
-					body={<span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-4 mt-1'>
+					body={<span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-4'>
 						{Information.Technologies.sort((a, b) => TechnologiesOrder.indexOf(a.type) - TechnologiesOrder.indexOf(b.type)).map(technology => {
 							const Icon = Icons[technology.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
 
 							return <div className='flex items-center gap-3' key={technology.name}>
-								{Icon && <Icon className='text-neutral-200' width={18} height={18} />}
-								<span className='truncate'>
+								{Icon && <Icon className='text-neutral-200 shrink-0' width={isMedium ? 18 : 14} height={isMedium ? 18 : 14} />}
+								<span className='truncate text-xs md:text-sm'>
 									{technology.name}
 								</span>
 							</div>;
