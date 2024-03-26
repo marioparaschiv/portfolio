@@ -2,11 +2,11 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Information from '~/../information/projects.json';
 import Typography from '~/components/typography';
 import { ArrowRight, Code } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
 import Button from '~/components/button';
 import { cn } from '~/utils';
-import { useNavigate } from 'react-router-dom';
 
 export const path = '/projects';
 export const element = Projects;
@@ -26,7 +26,7 @@ function Projects() {
 							</CarouselItem>)}
 						</CarouselContent>
 					</div>
-					<div className='flex justify-center mt-6 mx-24'>
+					<div className='flex justify-center mt-6 mx-12 md:mx-24'>
 						<CarouselDots />
 						<div className='flex items-center justify-center ml-auto gap-2'>
 							<CarouselPrevious />
@@ -73,8 +73,8 @@ function Project(props: ArrayToTuple<typeof Information>) {
 				<img
 					loading='eager'
 					decoding='async'
-					className={cn('h-12 mb-4 rounded-md', props.iconStyles)}
-					src={props.icon}
+					className={cn('h-12 mb-4 rounded-md', props.icon.styles)}
+					src={props.icon.path}
 				/>
 				<div className='flex flex-col items-center justify-center mb-2'>
 					<Typography tag='h3' margin={false} padding={false} border={false}>
@@ -92,7 +92,7 @@ function Project(props: ArrayToTuple<typeof Information>) {
 					size='sm'
 					onClick={() => navigate('/projects/' + props.id)}
 				>
-					View project <ArrowRight size={14} />
+					View project <ArrowRight size={12} />
 				</Button>
 			</div>
 		</div>

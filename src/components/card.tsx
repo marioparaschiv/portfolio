@@ -21,7 +21,7 @@ const styles = {
 		base: 'absolute inset-0 rounded-2xl opacity-0 transition ease-linear duration-200 saturate-200',
 		variants: {
 			highlights: {
-				white: 'bg-neutral-700/50 group-hover:opacity-100',
+				white: 'bg-neutral-700/30 group-hover:opacity-100',
 				red: 'bg-gradient-to-tr from-rose-500/30 to-pink-700/30 group-hover:opacity-30',
 				blue: 'bg-gradient-to-tr from-blue-500/30 to-indigo-700/30 group-hover:opacity-30',
 				green: 'bg-gradient-to-tr from-green-500/30 to-emerald-700/30 group-hover:opacity-30',
@@ -29,7 +29,22 @@ const styles = {
 			}
 		},
 		defaultVariants: {
-			highlights: 'purple'
+			highlights: 'white'
+		}
+	}),
+	border: cva({
+		base: 'absolute inset-0 rounded-2xl ring-1 ring-inset transition-all ring-white/10',
+		variants: {
+			border: {
+				white: 'ring-white/5 group-hover:ring-white/10',
+				red: 'ring-red/5 group-hover:ring-red-200/10',
+				blue: 'ring-blue/5 group-hover:ring-blue-200/10',
+				green: 'ring-green/5 group-hover:ring-green-200/10',
+				purple: 'ring-purple/5 group-hover:ring-purple-200/10'
+			}
+		},
+		defaultVariants: {
+			border: 'white'
 		}
 	})
 };
@@ -55,7 +70,7 @@ function Card({ children, highlights, radius = 'lg', className, onMouseMove, ...
 		}}
 	>
 		<div className={styles.highlights({ highlights })} style={{ maskImage, WebkitMaskImage: maskImage }} />
-		<div className='absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 transition-all group-hover:ring-white/20' />
+		<div className={styles.border({ border: highlights })} />
 		<div className='relative h-full w-full'>
 			{children}
 		</div>

@@ -5,6 +5,7 @@ import { Page } from '~/components/layout';
 import { Link } from 'react-router-dom';
 import Card from '~/components/card';
 import { cn } from '~/utils';
+import { cva } from 'cva';
 
 export const path = '/contact';
 export const element = Contact;
@@ -52,25 +53,38 @@ function Contact() {
 	</Page>;
 }
 
-interface ContactCardProps {
-	name: string;
-	href: string;
-	body: string;
-	icon: React.ReactNode;
-	color: React.ComponentProps<typeof Card>['highlights'];
-	className?: string;
-}
+const styles = {
+	icon: cva({
+		base: 'flex items-center justify-center p-1.5 bg-neutral-500/20 border border-neutral-300/50 rounded-full transition-all w-8 h-8',
+		variants: {
+			highlights: {
+				red: 'group-hover:border-rose-500/50 group-hover:bg-rose-400/20 group-hover:text-rose-500',
+				green: 'group-hover:border-green-500/50 group-hover:bg-green-400/20 group-hover:text-green-500',
+				blue: 'group-hover:border-blue-500/50 group-hover:bg-blue-400/20 group-hover:text-blue-500',
+				purple: 'group-hover:border-purple-500/50 group-hover:bg-purple-400/20 group-hover:text-purple-500',
+				white: 'group-hover:border-neutral-500/50 group-hover:bg-neutral-400/20 group-hover:text-neutral-500'
+			}
+		},
+		defaultVariants: {
+			highlights: 'purple'
+		}
+	})
+};
 
 function ContactCard({ name, href, body, icon, color, className }: ContactCardProps) {
 	return <Link to={href} target='_blank'>
-		<Card className={cn(className, 'min-w-[325px] cursor-pointer')} radius='sm' highlights={color}>
+		<Card className={cn(className, 'min-w-[325px] cursor-pointer')} radius='md' highlights={color}>
 			<div className='flex gap-4 items-center'>
-				{icon}
+				<div className={styles.icon({ highlights: color })}>
+					{icon}
+				</div>
 				<div className='flex flex-col justify-center'>
 					<Typography tag='h6'>
 						{name}
 					</Typography>
-					{body}
+					<Typography tag='p' colour='muted'>
+						{body}
+					</Typography>
 				</div>
 				<ExternalLink className='ml-auto' size={18} />
 			</div>

@@ -1,3 +1,7 @@
 ✓ Fix height glitch on about page on mobile layout
-✕ Improve about me content (?).
-✕ Complete Projects section.
+✓ Improve about me content.
+✓ Complete browse projects section.
+✓ Add individual project's section.
+✕ Improve carousel dots/navigation.
+✕ Add image picker to each individual project's page.
+✕ Add information about project.

@@ -3,8 +3,3 @@ export * as Projects from './projects';
 export * as Contact from './contact';
 export * as About from './about';
 export * as Home from './home';
-
-export type Page = {
-	element: React.ComponentType;
-	path: string;
-};
