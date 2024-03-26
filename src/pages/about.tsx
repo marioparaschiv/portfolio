@@ -29,7 +29,7 @@ function About() {
 			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
 				About me.
 			</Typography>
-			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full h-full md:w-auto'>
+			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full h-auto md:w-auto'>
 				{(Object.entries(Information) as unknown as [string, AboutItemDetails][]).map((card) => {
 					const [section, details] = card;
 					const Icon = Icons[details.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
@@ -154,8 +154,8 @@ const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<t
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<animated.div className='w-full h-full' style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
-				<div ref={ref} className='w-full h-full whitespace-normal truncate text-sm pt-4'>
+			<animated.div style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
+				<div ref={ref} className='whitespace-normal truncate text-sm pt-4'>
 					{body}
 				</div>
 			</animated.div>
