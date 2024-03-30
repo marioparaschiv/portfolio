@@ -41,7 +41,7 @@ function About() {
 						icon={<Icon />}
 						body={
 							<>
-								{details.items ? <span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-4'>
+								{details.items ? <span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-4'>
 									{details.items.map((item: AboutItemGridItem) => {
 										const Icon = (Icons[item.icon as keyof typeof Icons] ?? ItemIcons[item.icon as keyof typeof ItemIcons]) as React.ComponentType<SVGProps<SVGSVGElement>>;
 

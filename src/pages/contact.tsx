@@ -1,9 +1,10 @@
-import { ExternalLink, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, SquareArrowOutUpRight, Twitter } from 'lucide-react';
 import Information from '~/../information/contact.json';
 import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
 import { Link } from 'react-router-dom';
 import Card from '~/components/card';
+import Tag from '~/components/tag';
 import { cn } from '~/utils';
 import { cva } from 'cva';
 
@@ -16,9 +17,16 @@ export const order = 4;
 function Contact() {
 	return <Page section='Contact' className='p-0 flex min-h-screen w-screen items-center justify-center overflow-clip'>
 		<div className='flex items-center gap-8 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 w-full md:w-auto pt-20 md:pt-0'>
-			<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
-				Contact me.
-			</Typography>
+			<div className='flex flex-col items-center gap-4'>
+				<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
+					Contact me.
+				</Typography>
+				<a target='_blank' href={Information.CV}>
+					<Tag className='cursor-pointer gap-2 hover:border-brand/50 hover:bg-brand/20'>
+						Resume <SquareArrowOutUpRight size={12} />
+					</Tag>
+				</a>
+			</div>
 			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full md:w-auto'>
 				<ContactCard
 					name='LinkedIn'
