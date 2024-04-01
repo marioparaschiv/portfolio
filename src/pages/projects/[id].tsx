@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import Technologies from '~/components/technologies';
 import { ArrowLeft, LinkIcon } from 'lucide-react';
 import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
@@ -159,18 +160,7 @@ function Projects() {
 								Technologies
 							</Typography>
 							<Typography tag='p' className='text-xs font-medium text-neutral-400 lg:text-base'>
-								<span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-1 gap-x-4'>
-									{/* {project.technologies.sort((a, b) => TechnologiesOrder.indexOf(a.type) - TechnologiesOrder.indexOf(b.type)).map(technology => {
-										const Icon = Icons[technology.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
-
-										return <div className='flex items-center gap-3' key={technology.name}>
-											{Icon && <Icon className='text-neutral-200 shrink-0' width={isMedium ? 18 : 14} height={isMedium ? 18 : 14} />}
-											<span className='truncate text-xs md:text-sm'>
-												{technology.name}
-											</span>
-										</div>;
-									})} */}
-								</span>
+								<Technologies technologies={project.technologies} />
 							</Typography>
 						</div>}
 					</div>
@@ -190,5 +180,5 @@ function Projects() {
 				</div>
 			</div>
 		</div>
-	</Page >;
+	</Page>;
 }

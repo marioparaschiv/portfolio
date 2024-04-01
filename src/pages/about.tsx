@@ -63,10 +63,7 @@ function About() {
 					title='Technologies'
 					icon={<Icons.Code2 />}
 				>
-					<Technologies
-						order={config.about.technologies.order}
-						technologies={config.about.technologies.items}
-					/>
+					<Technologies />
 				</Item>
 			</div>
 		</div>

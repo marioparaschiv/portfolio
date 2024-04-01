@@ -8,7 +8,6 @@ function Header(props: React.HTMLProps<HTMLElement>) {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-
 	return <nav
 		key='header'
 		className={cn('transition-color fixed z-10 flex w-full items-center justify-center gap-8 border-0 border-b border-b-white/10 bg-white/1 py-7 backdrop-blur-md sm:border-b-white/0 sm:bg-white/0 sm:py-9 sm:backdrop-blur-0', props.className)}

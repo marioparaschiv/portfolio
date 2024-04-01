@@ -3,5 +3,6 @@
 ✓ Complete browse projects section.
 ✓ Add individual project's section.
 ✕ Improve carousel dots/navigation.
+✕ Improve performance of <Technologies /> component.
 ✕ Add image picker to each individual project's page.
-✕ Add information about project.
+✕ Add information about each project.
