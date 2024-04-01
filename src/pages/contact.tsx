@@ -1,10 +1,10 @@
 import { ExternalLink, Github, Linkedin, Mail, SquareArrowOutUpRight, Twitter } from 'lucide-react';
-import Information from '~/../information/contact.json';
 import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
 import { Link } from 'react-router-dom';
 import Card from '~/components/card';
 import Tag from '~/components/tag';
+import config from '@config.json';
 import { cn } from '~/utils';
 import { cva } from 'cva';
 
@@ -21,7 +21,7 @@ function Contact() {
 				<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
 					Contact me.
 				</Typography>
-				<a target='_blank' href={Information.CV}>
+				<a target='_blank' href={config.cv}>
 					<Tag className='cursor-pointer gap-2 hover:border-brand/50 hover:bg-brand/20'>
 						Resume <SquareArrowOutUpRight size={12} />
 					</Tag>
@@ -30,29 +30,29 @@ function Contact() {
 			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full md:w-auto'>
 				<ContactCard
 					name='LinkedIn'
-					body={Information.LinkedIn.text}
-					href={Information.LinkedIn.href}
+					body={config.links.linkedin.text}
+					href={config.links.linkedin.href}
 					icon={<Linkedin size={24} />}
 					color='green'
 				/>
 				<ContactCard
 					name='GitHub'
-					body={Information.GitHub.text}
-					href={Information.GitHub.href}
+					body={config.links.github.text}
+					href={config.links.github.href}
 					icon={<Github size={24} />}
 					color='blue'
 				/>
 				<ContactCard
 					name='Email'
-					body={Information.Email.text}
-					href={Information.Email.href}
+					body={config.links.email.text}
+					href={config.links.email.href}
 					icon={<Mail size={24} />}
 					color='red'
 				/>
 				<ContactCard
 					name='Twitter / X'
-					body={Information.Twitter.text}
-					href={Information.Twitter.href}
+					body={config.links.twitter.text}
+					href={config.links.twitter.href}
 					icon={<Twitter size={24} />}
 					color='purple'
 				/>

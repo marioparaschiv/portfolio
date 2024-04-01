@@ -12,6 +12,7 @@ const config: UserConfig = {
 	resolve: {
 		alias: [
 			{ find: '~', replacement: path.resolve(__dirname, 'src') },
+			{ find: '@', replacement: __dirname },
 		],
 	},
 	server: {

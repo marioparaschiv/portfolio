@@ -1,6 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
-import Information from '~/../information/projects.json';
 import { ArrowLeft, LinkIcon } from 'lucide-react';
 import Typography from '~/components/typography';
 import { Page } from '~/components/layout';
@@ -8,6 +7,7 @@ import Button from '~/components/button';
 import Card from '~/components/card';
 import Tag from '~/components/tag';
 import { useEffect } from 'react';
+import config from '@config.json';
 
 export const path = '/projects/:id';
 export const element = Projects;
@@ -19,7 +19,7 @@ function Projects() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const project = Information.find(p => p.id === id);
+	const project = config.projects.find(p => p.id === id);
 
 	useEffect(() => {
 		if (!project) {
@@ -31,10 +31,8 @@ function Projects() {
 		return null;
 	}
 
-	const precedessor = project.predecessor && Information.find(p => p.id === project.predecessor);
-	const successor = project.successor && Information.find(p => p.id === project.successor);
-
-	console.log(project);
+	const precedessor = project.predecessor && config.projects.find(p => p.id === project.predecessor);
+	const successor = project.successor && config.projects.find(p => p.id === project.successor);
 
 	return <Page section={`${project.name} (Projects)`} className='p-0 flex min-h-screen items-center justify-center overflow-hidden'>
 		<div className='flex flex-col max-w-7xl w-full items-center gap-16 m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
@@ -79,6 +77,18 @@ function Projects() {
 							<Typography tag='p' className='text-xs lg:text-base font-medium text-neutral-400 truncate whitespace-pre-wrap'>
 								{project.overview.join('\n') || 'None.'}
 							</Typography>
+						</div>
+						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
+							{project.solutions?.length && <>
+								<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+									Solutions
+								</Typography>
+								<Typography tag='p' className='text-xs lg:text-base font-medium text-neutral-400 truncate whitespace-pre-wrap'>
+									{project.solutions.map(solution => <Link to={solution.url} className='text-blue-500 hover:underline'>
+										{solution.name}
+									</Link>) || 'None.'}
+								</Typography>
+							</>}
 						</div>
 						{precedessor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>

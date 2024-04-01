@@ -1,0 +1,263 @@
+{
+	"title": "Mario Paraschiv.",
+	"subtext": "Full stack developer devoted to creating fluid and easy to use software.",
+	"location": "London, United Kingdom",
+	"cv": "/CV.pdf",
+	"links": {
+		"email": {
+			"text": "me@marioparaschiv.com",
+			"href": "mailto:me@marioparaschiv.com"
+		},
+		"github": {
+			"text": "marioparaschiv",
+			"href": "https://github.com/marioparaschiv"
+		},
+		"linkedin": {
+			"text": "in/marioparaschiv",
+			"href": "https://linkedin.com/in/marioparaschiv"
+		},
+		"twitter": {
+			"text": "mariovparaschiv",
+			"href": "https://twitter.com/mariovparaschiv"
+		}
+	},
+	"about": {
+		"information": [
+			"I am driven by competitiveness, aiming to develop polished, performant, and beautifully designed applications. I strive for perfection and invest heavily in optimization, whether it's in my code or personal life. Finding flaws in myself and my work drives me to perfect my craft.",
+			"",
+			"Recognizing the importance of self-care, I prioritize activities like working out and getting enough sleep, considering them crucial steps for promoting mental growth and accelerating my career as a Software Engineer."
+		],
+		"journey": [
+			"My coding journey commenced 5 years ago with Discord's API user experience enhancement using bots. It involved integrating a back-end service, API and website for streamlined user configuration, powered by OAuth2.",
+			"",
+			"Progressing further, I immersed myself in web development, mastering ReactJS and many popular technologies such as Tailwind CSS, Next.js and animation libraries to achieve the peak visual experience. To this day, I relish the opportunity to delve into new concepts and technologies, constantly pushing the boundaries of my understanding and skills."
+		],
+		"work": [
+			"Feel free to reach out if you are interested in working with me. I am dedicated to exploring collaborative opportunities that align with my expertise and passions.",
+			"",
+			"Whether you have a project in mind, wish to discuss potential collaborations, or simply want to connect, I am always open to new opportunities and eager to engage in meaningful discussions."
+		],
+		"technologies": {
+			"order": [
+				"language",
+				"database",
+				"framework",
+				"tooling"
+			],
+			"items": [
+				{
+					"icon": "TypeScript",
+					"name": "TypeScript",
+					"type": "language"
+				},
+				{
+					"icon": "JavaScript",
+					"name": "JavaScript",
+					"type": "language"
+				},
+				{
+					"icon": "Go",
+					"name": "Go",
+					"type": "language"
+				},
+				{
+					"icon": "Kotlin",
+					"name": "Kotlin",
+					"type": "language"
+				},
+				{
+					"icon": "Python",
+					"name": "Python",
+					"type": "language"
+				},
+				{
+					"icon": "ObjectiveC",
+					"name": "Objective C",
+					"type": "language"
+				},
+				{
+					"icon": "Swift",
+					"name": "Swift",
+					"type": "language"
+				},
+				{
+					"icon": "HTML",
+					"name": "HTML",
+					"type": "language"
+				},
+				{
+					"icon": "CSS",
+					"name": "CSS",
+					"type": "language"
+				},
+				{
+					"icon": "PostgreSQL",
+					"name": "PostgreSQL",
+					"type": "database"
+				},
+				{
+					"icon": "Redis",
+					"name": "Redis",
+					"type": "database"
+				},
+				{
+					"icon": "MongoDB",
+					"name": "MongoDB",
+					"type": "database"
+				},
+				{
+					"icon": "Firebase",
+					"name": "Firebase",
+					"type": "database"
+				},
+				{
+					"icon": "SQLite",
+					"name": "SQLite",
+					"type": "database"
+				},
+				{
+					"icon": "React",
+					"name": "React.js",
+					"type": "framework"
+				},
+				{
+					"icon": "Next",
+					"name": "Next.js",
+					"type": "framework"
+				},
+				{
+					"icon": "Tailwind",
+					"name": "Tailwind CSS",
+					"type": "framework"
+				},
+				{
+					"icon": "Svelte",
+					"name": "Svelte",
+					"type": "framework"
+				},
+				{
+					"icon": "SCSS",
+					"name": "SCSS/SASS",
+					"type": "framework"
+				},
+				{
+					"icon": "Electron",
+					"name": "Electron",
+					"type": "framework"
+				},
+				{
+					"icon": "Express",
+					"name": "Express.js",
+					"type": "framework"
+				},
+				{
+					"icon": "Git",
+					"name": "Git",
+					"type": "tooling"
+				},
+				{
+					"icon": "Docker",
+					"name": "Docker",
+					"type": "tooling"
+				},
+				{
+					"icon": "AWS",
+					"name": "AWS",
+					"type": "tooling"
+				}
+			]
+		}
+	},
+	"projects": [
+		{
+			"name": "Unbound",
+			"id": "unbound",
+			"type": "Mobile Application",
+			"timeFrame": "Jan 2023 - Jan 2024",
+			"badge": {
+				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
+				"text": "Production"
+			},
+			"overview": [
+				"Unbound is an open-source transformative modification designed to empower users of the Discord mobile app with unprecedented levels of customization. Offering a rich array of features, from plug-ins to themes, fonts, and icon packs, Unbound redefines the user experience, providing a platform for personalization unlike any other."
+			],
+			"predecessor": "enmity",
+			"responsibilities": [
+				"I was solely responsible for "
+			],
+			"technologies": [],
+			"solutions": [
+				{
+					"type": "link",
+					"name": "Backend",
+					"url": "https://github.com/unbound-mod/backend"
+				}
+			],
+			"icon": {
+				"path": "/img/projects/unbound/icon.png",
+				"styles": ""
+			},
+			"thumbnail": "/img/projects/unbound/thumbnail.png",
+			"images": []
+		},
+		{
+			"name": "Kiwa",
+			"id": "kiwa",
+			"type": "Website",
+			"url": "https://kiwasushi.vercel.app/",
+			"timeFrame": "Jan 2023 - Jan 2024",
+			"badge": {
+				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
+				"text": "Production"
+			},
+			"overview": [
+				"Kiwa is an Aix-en-Provence-based Asian fusion restaurant.",
+				"This project takes a modern approach to web design by using a monochrome style and emphasising the cuisine rather than the website.",
+				"The website is available in both French and English, with a language changer that automatically selects the language of the website based on the user's operating system/browser preferences.",
+				"The app features 4 sections: Home, a menu section, a reservations section and a FAQ section.",
+				"This project is built for both mobile and desktop. By using Tailwind CSS, I am able to control breakpoint-based styling effortlessly allowing me to easily ensure that the mobile experience is consistent."
+			],
+			"responsibilities": [
+				"It makes use of a proprietary internationalisation implementation that is similar to the abilities of certain famous React.js frameworks.",
+				"This project takes advantage of Chrome's View Transitions API, which allows for seamless transitions throughout the website, such as when switching between dark and bright modes.",
+				"Under the hood, the website uses Radix UI as the base for its components, providing accessibility to its users."
+			],
+			"technologies": [
+				"React",
+				"TypeScript",
+				"JavaScript",
+				"Tailwind CSS",
+				"Vite",
+				"Git",
+				"Radix UI"
+			],
+			"icon": {
+				"path": "/img/projects/kiwa/icon.png",
+				"styles": "ml-2"
+			},
+			"thumbnail": "/img/projects/kiwa/thumbnail.png",
+			"images": []
+		},
+		{
+			"name": "Enmity",
+			"id": "enmity",
+			"type": "Mobile Application",
+			"archived": true,
+			"timeFrame": "Jan 2023 - Jan 2024",
+			"badge": {
+				"styles": "bg-orange-600/30 border-orange-600/40 text-orange-600",
+				"text": "Superseded"
+			},
+			"overview": [],
+			"successor": "unbound",
+			"responsibilities": [],
+			"technologies": [],
+			"icon": {
+				"path": "/img/projects/enmity/icon.png",
+				"styles": ""
+			},
+			"thumbnail": "/img/projects/enmity/thumbnail.png",
+			"images": []
+		}
+	]
+}

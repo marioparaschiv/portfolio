@@ -1,27 +1,26 @@
-import { useState, useRef, useEffect, type SVGProps } from 'react';
+import { useState, useRef, useEffect, type ElementRef } from 'react';
 import { animated, easings, useSpring } from '@react-spring/web';
-import Information from '~/../information/about.json';
+import Technologies from '~/components/technologies';
 import { useBreakpoint } from '~/components/hooks';
 import Typography from '~/components/typography';
-import * as ItemIcons from '~/components/icons';
 import { useNavigate } from 'react-router-dom';
 import { Page } from '~/components/layout';
 import { ChevronDown } from 'lucide-react';
 import Button from '~/components/button';
 import * as Icons from 'lucide-react';
 import Card from '~/components/card';
+import config from '@config.json';
 import { cn } from '~/utils';
 import { cva } from 'cva';
 import React from 'react';
 
 export const path = '/about';
-export const element = About;
+export const element = React.memo(About);
 
 export const header = true;
 export const order = 2;
 
 function About() {
-	const isMedium = useBreakpoint('md');
 	const navigate = useNavigate();
 
 	return <Page section='About' className='p-0 flex min-h-screen w-screen items-center justify-center overflow-clip'>
@@ -30,50 +29,45 @@ function About() {
 				About me.
 			</Typography>
 			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full h-auto md:w-auto'>
-				{(Object.entries(Information) as unknown as [string, AboutItemDetails][]).map((card) => {
-					const [section, details] = card;
-					const Icon = Icons[details.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
-
-					return <Item
-						key={section}
-						highlights={details.highlights as 'red' | 'blue' | 'green' | 'purple' | 'white'}
-						title={section}
-						icon={<Icon />}
-						body={
-							<>
-								{details.items ? <span className='grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-4'>
-									{details.items.map((item: AboutItemGridItem) => {
-										const Icon = (Icons[item.icon as keyof typeof Icons] ?? ItemIcons[item.icon as keyof typeof ItemIcons]) as React.ComponentType<SVGProps<SVGSVGElement>>;
-
-										return <div className='flex items-center gap-3' key={item.name}>
-											{Icon && <Icon className='text-neutral-200 shrink-0' width={isMedium ? 18 : 14} height={isMedium ? 18 : 14} />}
-											<span className='truncate text-xs md:text-sm'>
-												{item.name}
-											</span>
-										</div>;
-									})}
-								</span> : details.text && <span className='whitespace-pre-wrap'>
-									{details.text.join('\n')}
-								</span>}
-								{details.buttons?.length && <div className='mt-5'>
-									{details.buttons?.map(btn => <Button
-										className='w-full'
-										variant='secondary'
-										size='sm'
-										onClick={() => {
-											if (!btn.onClick) return;
-
-											if (btn.onClick.type === 'redirect' && btn.onClick.url) {
-												navigate(btn.onClick.url);
-											}
-										}}
-									>
-										{btn.text}
-									</Button>)}
-								</div>}
-							</>}
-					/>;
-				})}
+				<Item
+					highlights='red'
+					title='Information'
+					icon={<Icons.PersonStanding />}
+				>
+					{config.about.information.join('\n')}
+				</Item>
+				<Item
+					highlights='blue'
+					title='Journey'
+					icon={<Icons.MapPinIcon />}
+				>
+					{config.about.journey.join('\n')}
+				</Item>
+				<Item
+					highlights='green'
+					title='Work'
+					icon={<Icons.Briefcase />}
+				>
+					{config.about.work.join('\n')}
+					<Button
+						className='w-full mt-5'
+						variant='secondary'
+						size='sm'
+						onClick={() => navigate('/contact')}
+					>
+						Get in Contact
+					</Button>
+				</Item>
+				<Item
+					highlights='purple'
+					title='Technologies'
+					icon={<Icons.Code2 />}
+				>
+					<Technologies
+						order={config.about.technologies.order}
+						technologies={config.about.technologies.items}
+					/>
+				</Item>
 			</div>
 		</div>
 	</Page>;
@@ -97,9 +91,14 @@ const styles = {
 	})
 };
 
-const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<typeof Card> & { title: string, body: string | React.ReactNode; icon: React.ReactNode; }) => {
+type ItemProps = React.ComponentProps<typeof Card> & {
+	title: string;
+	icon: React.ReactNode;
+};
+
+const Item = React.memo(({ title, icon, children, ...props }: ItemProps) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<ElementRef<'div'>>(null);
 	const [height, setHeight] = useState(0);
 	const isMedium = useBreakpoint('md');
 
@@ -155,8 +154,8 @@ const Item = React.memo(({ title, icon, body, ...props }: React.ComponentProps<t
 				</div>
 			</div>
 			<animated.div style={{ overflow: 'hidden', ...(!isMedium ? collapsed : {}) }}>
-				<div ref={ref} className='whitespace-normal truncate text-sm pt-4'>
-					{body}
+				<div ref={ref} className='whitespace-pre-wrap text-sm pt-4'>
+					{children}
 				</div>
 			</animated.div>
 		</div>

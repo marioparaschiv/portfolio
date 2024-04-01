@@ -1,14 +1,12 @@
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { useMediaQuery } from 'react-responsive';
-import Tailwind from '../../../tailwind.config';
+import file from '../../../tailwind.config';
 
-const Config = resolveConfig(Tailwind);
-const breakpoints = Config.theme!.screens!;
+const config = resolveConfig(file);
+const breakpoints = config.theme!.screens!;
 
 function useBreakpoint(breakpoint: keyof typeof breakpoints) {
-	const bool = useMediaQuery({ query: `(min-width: ${breakpoints[breakpoint]})` });
-
-	return bool;
+	return useMediaQuery({ query: `(min-width: ${breakpoints[breakpoint]})`, });
 }
 
 export default useBreakpoint;

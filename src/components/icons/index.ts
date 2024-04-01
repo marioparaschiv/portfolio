@@ -21,4 +21,5 @@ export { default as SCSS } from './scss';
 export { default as HTML } from './html';
 export { default as Git } from './git';
 export { default as AWS } from './aws';
+export { default as CSS } from './css';
 export { default as Go } from './go';

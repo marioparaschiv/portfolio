@@ -1,11 +1,11 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
-import Information from '~/../information/projects.json';
 import Typography from '~/components/typography';
 import { ArrowRight, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
 import Button from '~/components/button';
+import config from '@config.json';
 import { cn } from '~/utils';
 
 export const path = '/projects';
@@ -21,7 +21,7 @@ function Projects() {
 				<Carousel className='h-full mt-5' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }}>
 					<div className='flex flex-col'>
 						<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
-							{Information.map((project, index) => <CarouselItem key={index}>
+							{config.projects.map((project, index) => <CarouselItem key={index}>
 								<Project {...project} />
 							</CarouselItem>)}
 						</CarouselContent>
@@ -44,7 +44,7 @@ function Projects() {
 	</Page>;
 }
 
-function Project(props: ArrayToTuple<typeof Information>) {
+function Project(props: ArrayToTuple<typeof config.projects>) {
 	const [width, setWidth] = useState<number>(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
 	const navigate = useNavigate();
 
@@ -116,7 +116,7 @@ function CarouselDots() {
 	}, [carousel.api]);
 
 	return <div className='flex gap-2 justify-center items-center'>
-		{Information.map((_, index) => <div
+		{config.projects.map((_, index) => <div
 			key={index}
 			className={cn('w-3 h-3 cursor-pointer rounded-full bg-neutral-800', idx === index && 'bg-white')}
 			onClick={() => carousel.api?.scrollTo(index)}
