@@ -1,4 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import PreviewNavigation from '~/components/preview-navigation';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import Technologies from '~/components/technologies';
 import { ArrowLeft, LinkIcon } from 'lucide-react';
@@ -177,6 +178,11 @@ function Projects() {
 							className='max-w-none w-full h-full inset-0 text-transparent absolute scale-[1.02] border-none shadow-none outline-none object-cover'
 						/>
 					</div>
+					<PreviewNavigation name='hi' previews={[]}>
+						<div className='text-white'>
+							Toggle Picker
+						</div>
+					</PreviewNavigation>
 				</div>
 			</div>
 		</div>

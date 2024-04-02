@@ -2,7 +2,7 @@
 ✓ Improve about me content.
 ✓ Complete browse projects section.
 ✓ Add individual project's section.
+✓ Improve performance of <Technologies /> component.
+⧗ Add image picker to each individual project's page.
 ✕ Improve carousel dots/navigation.
-✕ Improve performance of <Technologies /> component.
-✕ Add image picker to each individual project's page.
 ✕ Add information about each project.
