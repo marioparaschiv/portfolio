@@ -1,6 +1,6 @@
 {
 	"title": "Mario Paraschiv.",
-	"subtext": "Full stack developer devoted to creating fluid and easy to use software.",
+	"subtext": "Software Engineer devoted to creating fluid and easy to use software.",
 	"location": "London, United Kingdom",
 	"cv": "/CV.pdf",
 	"links": {
@@ -112,6 +112,7 @@
 			"name": "Enmity",
 			"id": "enmity",
 			"type": "Mobile Application",
+			"url": "https://enmity.unbound.rip/",
 			"archived": true,
 			"timeFrame": "Jan 2023 - Jan 2024",
 			"badge": {
