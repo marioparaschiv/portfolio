@@ -1,9 +1,9 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import PreviewNavigation from '~/components/preview-navigation';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import Technologies from '~/components/technologies';
 import { ArrowLeft, LinkIcon } from 'lucide-react';
 import Typography from '~/components/typography';
+import Media from '~/components/media';
 import { Page } from '~/components/layout';
 import Button from '~/components/button';
 import Card from '~/components/card';
@@ -12,12 +12,12 @@ import { useEffect } from 'react';
 import config from '@config.json';
 
 export const path = '/projects/:id';
-export const element = Projects;
+export const element = Project;
 
 export const header = false;
 export const order = 3;
 
-function Projects() {
+function Project() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
@@ -36,9 +36,9 @@ function Projects() {
 	const precedessor = project.predecessor && config.projects.find(p => p.id === project.predecessor);
 	const successor = project.successor && config.projects.find(p => p.id === project.successor);
 
-	return <Page section={`${project.name} (Projects)`} className='p-0 flex min-h-screen items-center justify-center overflow-hidden'>
-		<div className='flex flex-col max-w-7xl w-full items-center gap-16 m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
-			<div className='flex w-full items-center justify-between px-8'>
+	return <Page section={project.name} className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 w-full max-w-7xl animate-in duration-500 fade-in-0'>
+			<div className='flex justify-between items-center px-8 w-full'>
 				<Button className='gap-2' size='sm' onClick={() => navigate('/projects')}>
 					<ArrowLeft size={12} />	Browse
 				</Button>
@@ -48,21 +48,21 @@ function Projects() {
 					</Link>}
 				</div>
 			</div>
-			<div className='grid grid-cols-5 w-full gap-5 px-8 pb-16 md:h-auto md:gap-9'>
-				<div className='col-span-5 flex flex-col gap-5 md:col-span-2 lg:gap-8'>
+			<div className='gap-5 md:gap-9 grid grid-cols-5 px-8 pb-16 w-full md:h-auto'>
+				<div className='flex flex-col gap-5 lg:gap-8 col-span-5 md:col-span-2'>
 					<div className='flex items-center gap-4'>
 						<img
 							loading='eager'
 							decoding='async'
-							className='h-24 rounded-2xl object-cover'
+							className='shadow-none border-none rounded-2xl max-w-none h-24 object-cover outline-none scale-[1.02]'
 							src={project.icon.path}
 						/>
-						<div className='flex w-full items-start justify-between gap-1 md:w-auto md:flex-col md:justify-start'>
+						<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
 							<div className='flex flex-col'>
-								<Typography tag='h1' className='text-sm font-bold text-white sm:text-base md:text-lg lg:text-2xl'>
+								<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-2xl'>
 									{project.name}
 								</Typography>
-								<Typography tag='p' className='text-xs font-medium text-neutral-400 sm:text-sm md:text-base lg:text-xl'>
+								<Typography tag='p' className='font-medium text-neutral-400 text-xs sm:text-sm md:text-base lg:text-xl'>
 									{project.type}
 								</Typography>
 							</div>
@@ -73,43 +73,43 @@ function Projects() {
 					</div>
 					<div className='flex flex-col gap-3 md:gap-5 lg:gap-8'>
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Overview
 							</Typography>
-							<Typography tag='p' className='text-xs lg:text-base font-medium text-neutral-400 truncate whitespace-pre-wrap'>
+							<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-wrap'>
 								{project.overview.join('\n') || 'None.'}
 							</Typography>
 						</div>
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							{project.solutions?.length && <>
-								<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+								<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 									Solutions
 								</Typography>
-								<Typography tag='p' className='text-xs lg:text-base font-medium text-neutral-400 truncate whitespace-pre-wrap'>
-									{project.solutions.map(solution => <Link to={solution.url} className='text-blue-500 hover:underline'>
+								<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-wrap'>
+									{project.solutions.map((solution, index) => <Link id={solution.url + index} to={solution.url} className='text-blue-500 hover:underline'>
 										{solution.name}
 									</Link>) || 'None.'}
 								</Typography>
 							</>}
 						</div>
 						{precedessor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Predecessor
 							</Typography>
-							<Card className='cursor-pointer min-w-fit' onClick={() => navigate('/projects/' + precedessor.id)}>
+							<Card className='min-w-fit cursor-pointer' onClick={() => navigate('/projects/' + precedessor.id)}>
 								<div className='flex items-center gap-4'>
 									<img
 										loading='eager'
 										decoding='async'
-										className='h-12 rounded-lg object-cover'
+										className='rounded-lg h-12 object-cover'
 										src={precedessor.icon.path}
 									/>
-									<div className='flex w-full items-start justify-between gap-1 md:w-auto md:flex-col md:justify-start'>
+									<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
 										<div className='flex flex-col'>
-											<Typography tag='h1' className='text-sm font-bold text-white sm:text-base md:text-lg lg:text-lg'>
+											<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
 												{precedessor.name}
 											</Typography>
-											<Typography tag='p' className='text-xs lg:text-sm font-medium text-neutral-400'>
+											<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
 												{precedessor.type}
 											</Typography>
 										</div>
@@ -121,23 +121,23 @@ function Projects() {
 							</Card>
 						</div>}
 						{successor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Successor
 							</Typography>
-							<Card className='cursor-pointer min-w-fit' onClick={() => navigate('/projects/' + successor.id)}>
+							<Card className='min-w-fit cursor-pointer' onClick={() => navigate('/projects/' + successor.id)}>
 								<div className='flex items-center gap-4'>
 									<img
 										loading='eager'
 										decoding='async'
-										className='h-12 rounded-lg object-cover'
+										className='rounded-lg h-12 object-cover'
 										src={successor.icon.path}
 									/>
-									<div className='flex w-full items-start justify-between gap-1 md:w-auto md:flex-col md:justify-start'>
+									<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
 										<div className='flex flex-col'>
-											<Typography tag='h1' className='text-sm font-bold text-white sm:text-base md:text-lg lg:text-lg'>
+											<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
 												{successor.name}
 											</Typography>
-											<Typography tag='p' className='text-xs lg:text-sm font-medium text-neutral-400'>
+											<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
 												{successor.type}
 											</Typography>
 										</div>
@@ -149,40 +149,25 @@ function Projects() {
 							</Card>
 						</div>}
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Responsibilities
 							</Typography>
-							<Typography tag='p' className='text-xs font-medium text-neutral-400 lg:text-base truncate whitespace-pre-line'>
+							<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-line'>
 								{project.responsibilities.join('\n') || 'None.'}
 							</Typography>
 						</div>
 						{project.technologies?.length !== 0 && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='text-base font-bold text-white md:text-lg lg:text-2xl'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Technologies
 							</Typography>
-							<Typography tag='p' className='text-xs font-medium text-neutral-400 lg:text-base'>
+							<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base'>
 								<Technologies technologies={project.technologies} />
 							</Typography>
 						</div>}
 					</div>
 				</div>
-				<div className='col-span-5 flex cursor-pointer flex-col gap-3 md:col-span-3'>
-					<div className='relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 lg:rounded-3xl'>
-						<img
-							loading='lazy'
-							decoding='async'
-							alt={project.name}
-							src={project.thumbnail}
-							onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
-							sizes='100vw'
-							className='max-w-none w-full h-full inset-0 text-transparent absolute scale-[1.02] border-none shadow-none outline-none object-cover'
-						/>
-					</div>
-					<PreviewNavigation name='hi' previews={[]}>
-						<div className='text-white'>
-							Toggle Picker
-						</div>
-					</PreviewNavigation>
+				<div className='flex flex-col gap-3 col-span-5 md:col-span-3 cursor-pointer'>
+					<Media images={project.images} footer={{ subtitle: project.name }} />
 				</div>
 			</div>
 		</div>

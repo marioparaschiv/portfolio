@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-		<meta name='description' content='Full stack developer from London, United Kingdom.' />
-		<title>Mario Paraschiv</title>
-  </head>
-  <body>
-    <div id='root'></div>
-    <script type='module' src='/src/index.tsx'></script>
-  </body>
+
+<head>
+	<meta charset='UTF-8' />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+	<meta name='description' content='Full stack developer from London, United Kingdom.' />
+	<title>Mario Paraschiv</title>
+
+	<link rel='preload' href='src/style.css' as='style' />
+	<link rel='preload' href='/img/grid.webp' as='image'>
+
+	<link rel='stylesheet' href='src/styles.css'>
+</head>
+
+<body>
+	<div id='root'></div>
+	<script type='module' src='/src/index.tsx'></script>
+</body>
+
 </html>

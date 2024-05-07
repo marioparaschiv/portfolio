@@ -9,6 +9,7 @@ const config: Config = {
 		'./app/**/*.{ts,tsx}',
 		'./src/**/*.{ts,tsx}',
 		'./information/**/*.{ts,tsx,json}',
+		'config.json'
 	],
 	theme: {
 		container: {
@@ -20,7 +21,7 @@ const config: Config = {
 		},
 		extend: {
 			backgroundImage: {
-				'grid': 'url(/img/grid.png)'
+				'grid': 'url(/img/grid.webp)'
 			},
 			colors: {
 				border: 'hsl(var(--border))',

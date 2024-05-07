@@ -6,24 +6,28 @@
   font-family: 'Open Runde';
   src: url(/fonts/OpenRunde-Regular.woff2) format('woff2');
 	font-weight: 400;
+	font-display: swap;
 }
 
 @font-face {
   font-family: 'Open Runde';
   src: url(/fonts/OpenRunde-Medium.woff2) format('woff2');
 	font-weight: 500;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Open Runde';
 	src: url(/fonts/OpenRunde-Semibold.woff2) format('woff2');
 	font-weight: 600;
+	font-display: swap;
 }
 
 @font-face {
   font-family: 'Open Runde';
   src: url(/fonts/OpenRunde-Bold.woff2) format('woff2');
 	font-weight: 700;
+	font-display: swap;
 }
 
 
@@ -54,13 +58,14 @@
 		--input: 240 3.7% 15.9%;
 		--ring: 240 4.9% 83.9%;
 		--cursor: 0 100% 100%;
-		--scrollbar: 0 0% 12.5%;
+		--scrollbar: 0 0% 15%;
 		--brand: 228.9 77.4% 73.9%;
 
 		--radius: 10px;
 
 		color-scheme: dark;
 		font-family: 'Open Runde', system-ui, Avenir, Helvetica, Arial, sans-serif;
+		box-sizing: border-box;
 	}
 }
 

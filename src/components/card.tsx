@@ -2,7 +2,10 @@ import { cva, type VariantProps } from 'cva';
 import React, { useState } from 'react';
 import { cn } from '~/utils';
 
-type CardProps = React.HTMLProps<HTMLDivElement> & VariantProps<typeof styles.highlights> & { radius?: 'sm' | 'md' | 'lg'; };
+type CardProps = React.HTMLProps<HTMLDivElement> & VariantProps<typeof styles.highlights> & {
+	radius?: 'sm' | 'md' | 'lg';
+	contentClassName?: string | undefined;
+};
 
 const styles = {
 	container: cva({
@@ -49,7 +52,7 @@ const styles = {
 	})
 };
 
-function Card({ children, highlights, radius = 'lg', className, onMouseMove, ...props }: CardProps) {
+function Card({ children, highlights, radius = 'lg', className, contentClassName, onMouseMove, ...props }: CardProps) {
 	const [mouseX, setMouseX] = useState(0);
 	const [mouseY, setMouseY] = useState(0);
 
@@ -71,7 +74,7 @@ function Card({ children, highlights, radius = 'lg', className, onMouseMove, ...
 	>
 		<div className={styles.highlights({ highlights })} style={{ maskImage, WebkitMaskImage: maskImage }} />
 		<div className={styles.border({ border: highlights })} />
-		<div className='relative h-full w-full'>
+		<div className={cn('relative h-full w-full', contentClassName)}>
 			{children}
 		</div>
 	</div>;

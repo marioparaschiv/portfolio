@@ -10,11 +10,11 @@ function Header(props: React.HTMLProps<HTMLElement>) {
 
 	return <nav
 		key='header'
-		className={cn('transition-color fixed z-10 flex w-full items-center justify-center gap-8 border-0 border-b border-b-white/10 bg-white/1 py-7 backdrop-blur-md sm:border-b-white/0 sm:bg-white/0 sm:py-9 sm:backdrop-blur-0', props.className)}
+		className={cn('pointer-events-none transition-color fixed z-10 flex w-full items-center justify-center gap-8 border-0 border-b border-b-white/10 bg-white/1 py-7 backdrop-blur-md sm:border-b-white/0 sm:bg-white/0 sm:py-9 sm:backdrop-blur-0', props.className)}
 		{...props as any}
 	>
-		<div className='container flex items-center gap-4 justify-center'>
-			<NavigationMenu className='w-full flex md:items-center md:w-auto'>
+		<div className='flex justify-center items-center gap-4 pointer-events-none container'>
+			<NavigationMenu className='flex md:items-center w-full md:w-auto pointer-events-auto'>
 				<NavigationMenuList>
 					{Object.entries(Pages).sort(([, first], [, second]) => first.order - second.order).filter(([, instance]) => instance.header).map(([name, instance]) =>
 						<NavigationMenuItem key={name}>

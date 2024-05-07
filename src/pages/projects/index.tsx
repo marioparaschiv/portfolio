@@ -15,10 +15,10 @@ export const header = true;
 export const order = 3;
 
 function Projects() {
-	return <Page section='Projects' className='p-0 flex min-h-screen items-center justify-center overflow-hidden'>
-		<div className='flex items-center gap-16 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500'>
+	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
 			{import.meta.env.DEV ? <>
-				<Carousel className='h-full mt-5' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: true }}>
+				<Carousel className='mt-5 h-full' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: false }}>
 					<div className='flex flex-col'>
 						<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 							{config.projects.map((project, index) => <CarouselItem key={index}>
@@ -26,9 +26,9 @@ function Projects() {
 							</CarouselItem>)}
 						</CarouselContent>
 					</div>
-					<div className='flex justify-center mt-6 mx-12 md:mx-24'>
+					<div className='flex justify-center mx-12 md:mx-24 mt-6'>
 						<CarouselDots />
-						<div className='flex items-center justify-center ml-auto gap-2'>
+						<div className='flex justify-center items-center gap-2 ml-auto'>
 							<CarouselPrevious />
 							<CarouselNext />
 						</div>
@@ -36,7 +36,7 @@ function Projects() {
 				</Carousel>
 			</> : <>
 				<Code className='text-neutral-400' size={256} strokeWidth={2} />
-				<Typography tag='h1' className='font-semibold bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent'>
+				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
 					Under construction.
 				</Typography>
 			</>}
@@ -58,17 +58,17 @@ function Project(props: ArrayToTuple<typeof config.projects>) {
 		return () => window.removeEventListener('resize', onResize);
 	}, []);
 
-	return <div className='flex items-center justify-center overflow-hidden rounded-3xl relative border border-neutral-800 bg-neutral-900'>
+	return <div className='relative flex justify-center items-center border-neutral-800 bg-neutral-900 border rounded-3xl overflow-hidden'>
 		<img
 			loading='eager'
 			decoding='async'
-			className='select-none h-[35rem] object-cover'
+			className='h-[35rem] select-none object-cover'
 			alt={props.name}
 			style={{ width }}
 			src={props.thumbnail}
 			onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 		/>
-		<div className='absolute z-10 h-full w-full bg-gradient-to-t from-black/80 to-black/20'>
+		<div className='z-10 absolute bg-gradient-to-t from-black/80 to-black/20 w-full h-full'>
 			<div className='relative flex flex-col justify-center items-center h-full'>
 				<img
 					loading='eager'
@@ -76,11 +76,11 @@ function Project(props: ArrayToTuple<typeof config.projects>) {
 					className={cn('h-12 mb-4 rounded-md', props.icon.styles)}
 					src={props.icon.path}
 				/>
-				<div className='flex flex-col items-center justify-center mb-2'>
+				<div className='flex flex-col justify-center items-center mb-2'>
 					<Typography tag='h3' margin={false} padding={false} border={false}>
 						{props.name}
 					</Typography>
-					<Typography tag='h5' className='text-lg font-normal text-foreground-secondary'>
+					<Typography tag='h5' className='font-normal text-foreground-secondary text-lg'>
 						{props.type}
 					</Typography>
 					<Typography tag='h6' border={false} className='font-normal text-foreground-secondary/60 text-xs'>
@@ -115,7 +115,7 @@ function CarouselDots() {
 		return () => void carousel.api?.off('scroll', onSlideChange);
 	}, [carousel.api]);
 
-	return <div className='flex gap-2 justify-center items-center'>
+	return <div className='flex justify-center items-center gap-2'>
 		{config.projects.map((_, index) => <div
 			key={index}
 			className={cn('w-3 h-3 cursor-pointer rounded-full bg-neutral-800', idx === index && 'bg-white')}
