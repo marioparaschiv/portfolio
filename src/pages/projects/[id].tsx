@@ -99,7 +99,6 @@ function Project() {
 							<Link className='group focus-visible:outline-none focus-visible:ring-0' to={'/projects/' + precedessor.id}>
 								<Card
 									className='group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white min-w-fit cursor-pointer'
-									tabIndex={0}
 									role='button'
 								>
 									<div className='flex items-center gap-4'>
