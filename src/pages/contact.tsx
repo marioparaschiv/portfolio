@@ -15,19 +15,19 @@ export const header = true;
 export const order = 4;
 
 function Contact() {
-	return <Page section='Contact' className='p-0 flex min-h-screen w-screen items-center justify-center overflow-clip'>
-		<div className='flex items-center gap-8 flex-col m-auto animate-in fade-in-0 zoom-in-105 slide-in-from-bottom-8 duration-500 w-full md:w-auto pt-20 md:pt-0'>
+	return <Page section='Contact' className='flex justify-center items-center p-0 w-screen min-h-screen overflow-clip'>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 pt-20 md:pt-0 w-full md:w-auto animate-in duration-500 fade-in-0'>
 			<div className='flex flex-col items-center gap-4'>
-				<Typography tag='h1' className='bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent font-semibold'>
+				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
 					Contact me.
 				</Typography>
-				<a target='_blank' href={config.cv}>
-					<Tag className='cursor-pointer gap-2 hover:border-brand/50 hover:bg-brand/20'>
+				<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.cv}>
+					<Tag className='group-focus-visible:ring-2 group-focus-visible:ring-white gap-2 hover:bg-brand/20 hover:border-brand/50 cursor-pointer'>
 						Resume <SquareArrowOutUpRight size={12} />
 					</Tag>
 				</a>
 			</div>
-			<div className='m-4 grid grid-cols-1 gap-2 sm:m-0 md:grid-cols-2 p-4 md:gap-6 w-full md:w-auto'>
+			<div className='gap-2 md:gap-6 grid grid-cols-1 md:grid-cols-2 m-4 sm:m-0 p-4 w-full md:w-auto'>
 				<ContactCard
 					name='LinkedIn'
 					body={config.links.linkedin.text}
@@ -80,9 +80,9 @@ const styles = {
 };
 
 function ContactCard({ name, href, body, icon, color, className }: ContactCardProps) {
-	return <Link to={href} target='_blank'>
-		<Card className={cn(className, 'min-w-[325px] cursor-pointer')} radius='md' highlights={color}>
-			<div className='flex gap-4 items-center'>
+	return <Link tabIndex={0} className='group focus-visible:ring-0 focus-visible:outline-none' to={href} target='_blank'>
+		<Card tabIndex={-1} className={cn(className, 'min-w-[325px] cursor-pointer group-focus-visible:ring-2 group-focus-visible:ring-white')} radius='md' highlights={color}>
+			<div className='flex items-center gap-4'>
 				<div className={styles.icon({ highlights: color })}>
 					{icon}
 				</div>

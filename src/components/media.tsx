@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { animated, useSpringValue } from '@react-spring/web';
+import { animated, easings, useSpringValue, useTransition } from '@react-spring/web';
 import { ArrowUpDown } from 'lucide-react';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Card from '~/components/card';
@@ -39,6 +39,25 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		height: useSpringValue(0),
 	};
 
+	const transitions = useTransition(opened, {
+		from: {
+			opacity: 0,
+			scale: 0.98
+		},
+		enter: {
+			opacity: 1,
+			scale: 1
+		},
+		leave: {
+			opacity: 0,
+			scale: 0.98
+		},
+		config: {
+			easing: easings.easeInOutQuad,
+			duration: 175
+		},
+	});
+
 	const uuid = useMemo(() => crypto.randomUUID(), []);
 	const items = useMemo(() => {
 		const result: typeof images = [];
@@ -58,27 +77,41 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 	useEffect(() => {
 		// Out of bounds check
 		if ((items.length - 1) < hovered) {
-			console.log('Corrected out of bounds index');
 			setHovered(0);
 		}
 	}, [search, hovered]);
 
 	const animateProperties = useCallback((target?: HTMLElement, immediate: boolean = false) => {
 		if (!target) {
-			console.log('no target');
 			return;
 		}
 
 		const rect = target.getBoundingClientRect();
 
-		animation.top[immediate ? 'set' : 'start'](target.offsetTop);
-		animation.width[immediate ? 'set' : 'start'](rect.width);
-		animation.height[immediate ? 'set' : 'start'](rect.height);
+		animation.top[immediate ? 'set' : 'start'](target.offsetTop, {
+			config: {
+				duration: 250,
+				easing: easings.easeInOutQuad
+			}
+		});
+
+		animation.width[immediate ? 'set' : 'start'](rect.width, {
+			config: {
+				duration: 150,
+				easing: easings.easeInOutQuad
+			}
+		});
+
+		animation.height[immediate ? 'set' : 'start'](rect.height, {
+			config: {
+				duration: 150,
+				easing: easings.easeInOutQuad
+			}
+		});
 	}, []);
 
 	const scrollToIndex = useCallback((index: number) => {
 		if (!listRef.current) {
-			console.log('no ref');
 			return;
 		}
 
@@ -131,14 +164,8 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		};
 	}, []);
 
-	useLayoutEffect(() => {
-		if (opened) {
-			setImmediate(() => scrollToIndex(hovered));
-		}
-	}, []);
-
 	return <>
-		<div className='relative flex justify-center items-center border-neutral-800 bg-neutral-900 border rounded-xl lg:rounded-3xl overflow-hidden aspect-[16/9]'>
+		<a className='group focus-visible:outline-none focus-visible:ring-0 relative flex justify-center items-center border-neutral-800 bg-neutral-900 border rounded-xl lg:rounded-3xl overflow-hidden aspect-[16/9]' href={images[selected].src}>
 			<img
 				loading='lazy'
 				decoding='async'
@@ -146,12 +173,12 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 				src={images[selected].src}
 				onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 				sizes='100vw'
-				className='absolute inset-0 shadow-none border-none w-full max-w-none h-full text-transparent object-cover outline-none scale-[1.02]'
+				className='group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white absolute w-full max-w-none h-full text-transparent object-cover scale-[1.02]'
 			/>
-		</div>
+		</a>
 		<Dialog.Root open={opened} onOpenChange={setOpened} {...props}>
 			<Dialog.Trigger asChild>
-				<Card contentClassName='group flex items-center'>
+				<Card onClick={() => setOpened(!opened)} tabIndex={0} role='button' className='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' contentClassName='group flex items-center'>
 					<div className='flex flex-col gap-1'>
 						<span className='font-semibold text-sm text-white sm:text-base md:text-lg lg:text-xl truncate'>
 							{images[selected].title}
@@ -165,110 +192,115 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 					</div>
 				</Card>
 			</Dialog.Trigger>
-			<Dialog.Portal>
-				<Dialog.Overlay className='fixed inset-0 bg-black/50 backdrop-blur-sm animate-in duration-200 fade-in' />
-				<Dialog.Content
-					className='top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2'
-					onKeyDown={(event) => {
-						switch (event.key) {
-							case 'ArrowDown':
-								event.preventDefault();
-								moveDown();
-								break;
+			{transitions((styles, item) => item ? <>
+				<Dialog.Overlay asChild forceMount>
+					<animated.div style={{ opacity: styles.opacity }} className='fixed inset-0 bg-black/50 backdrop-blur-sm' />
+				</Dialog.Overlay>
+				<Dialog.Content asChild forceMount>
+					<animated.div
+						style={{ opacity: styles.opacity, scale: styles.scale }}
+						className='top-1/2 left-1/2 absolute !-translate-x-1/2 !-translate-y-1/2'
+						onKeyDown={(event) => {
+							switch (event.key) {
+								case 'ArrowDown':
+									event.preventDefault();
+									moveDown();
+									break;
 
-							case 'ArrowUp':
-								event.preventDefault();
-								moveUp();
-								break;
-							case 'Enter':
-								if (!items.length) return;
+								case 'ArrowUp':
+									event.preventDefault();
+									moveUp();
+									break;
+								case 'Enter':
+									if (!items.length) return;
 
-								setOpened(false);
-								setSelected(hovered);
-								break;
-						}
-					}}
-				>
-					<div className='border-neutral-700 bg-neutral-900 shadow-lg mx-6 sm:mx-0 border rounded-2xl'>
-						<input
-							type='text'
-							placeholder='Search...'
-							className='z-20 border-neutral-800 bg-transparent px-6 sm:px-7 py-3 sm:py-4 border-b w-full text-sm text-white placeholder:text-neutral-500 sm:text-base outline-none'
-							onChange={(event) => setSearch(event.target.value)}
-							value={search}
-						/>
-						<div
-							ref={listRef}
-							className='relative z-0 flex flex-col px-3 sm:px-4 py-2 sm:py-3 w-full h-full max-h-80 overflow-auto'
-						>
-							{/* Mover */}
-							<animated.div
-								style={{
-									width: animation.width,
-									height: animation.height,
-									top: animation.top
-								}}
-								className='z-10 absolute bg-white/10 rounded-lg sm:rounded-xl w-full h-[87.5px]'
-							/>
-							{items.length === 0 && <div className='p-12 font-bold text-center'>
-								No items found containing '{search.toLowerCase()}'.
-							</div>}
-							{items.map((image, index) => <div
-								id={image.src + index}
-								data-hover-uuid={uuid}
-								className='relative z-10 flex items-center gap-3 p-1.5 sm:p-2 cursor-pointer'
-								ref={(r) => {
-									if (hovered === index) {
-										ref.current = r;
-									} else {
-										return null;
-									}
-								}}
-								onClick={() => {
 									setOpened(false);
-									setSelected(index);
-								}}
-								onMouseLeave={() => setLocked(false)}
-								onMouseEnter={() => {
-									if (!locked) {
-										setHovered(index);
-									}
-								}}
+									setSelected(hovered);
+									break;
+							}
+						}}
+					>
+						<div className='border-neutral-700 bg-neutral-900 shadow-lg mx-6 sm:mx-0 border rounded-2xl'>
+							<input
+								type='text'
+								placeholder='Search...'
+								className='z-20 border-neutral-800 bg-transparent px-6 sm:px-7 py-3 sm:py-4 border-b w-full text-sm text-white placeholder:text-neutral-500 sm:text-base outline-none'
+								onChange={(event) => setSearch(event.target.value)}
+								value={search}
+							/>
+							<div
+								ref={listRef}
+								className='relative z-0 flex flex-col px-3 sm:px-4 py-2 sm:py-3 w-full h-full max-h-80 overflow-auto'
 							>
-								<div className='relative bg-neutral-900 rounded-md w-24 sm:w-32 h-[54px] sm:h-[72px] overflow-hidden'>
-									<img
-										alt={`Media ${image.src}`}
-										loading='lazy'
-										decoding='async'
-										onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
-										src={image.src}
-										data-nimg='fill'
-										className='shadow-none border-none max-w-none object-cover outline-none scale-[1.02]'
-										style={{ position: 'absolute', height: '100%', width: '100%', inset: 0, color: 'transparent' }}>
-									</img>
-								</div>
-								<div className='flex-1'>
-									<div className='font-medium text-white text-xs sm:text-sm'>
-										{image.title}
+								{/* Mover */}
+								{items.length && <animated.div
+									style={{
+										width: animation.width,
+										height: animation.height,
+										top: animation.top
+									}}
+									className='z-10 absolute bg-white/10 rounded-lg sm:rounded-xl w-full h-[87.5px]'
+								/>}
+								{items.length === 0 && <div className='p-12 font-bold text-center'>
+									No items found containing '{search.toLowerCase()}'.
+								</div>}
+								{items.map((image, index) => <div
+									key={image.src + index}
+									data-hover-uuid={uuid}
+									className='relative z-10 flex items-center gap-3 p-1.5 sm:p-2 cursor-pointer'
+									ref={(r) => {
+										if (hovered === index) {
+											ref.current = r;
+										} else {
+											return null;
+										}
+									}}
+									onClick={() => {
+										setOpened(false);
+										setSelected(index);
+									}}
+									onMouseLeave={() => setLocked(false)}
+									onMouseEnter={() => {
+										if (!locked) {
+											setHovered(index);
+										}
+									}}
+								>
+									<div className='relative bg-neutral-900 rounded-md w-24 sm:w-32 h-[54px] sm:h-[72px] overflow-hidden'>
+										<img
+											alt={`Media ${image.src}`}
+											loading='lazy'
+											decoding='async'
+											onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
+											src={image.src}
+											data-nimg='fill'
+											className='shadow-none border-none max-w-none object-cover outline-none scale-[1.02]'
+											style={{ position: 'absolute', height: '100%', width: '100%', inset: 0, color: 'transparent' }}>
+										</img>
 									</div>
-									<div className='text-neutral-500 text-xs'>
-										{image.subtitle}
+									<div className='flex-1'>
+										<div className='font-medium text-white text-xs sm:text-sm'>
+											{image.title}
+										</div>
+										<div className='text-neutral-500 text-xs'>
+											{image.subtitle}
+										</div>
 									</div>
-								</div>
-							</div>)}
+								</div>)}
+							</div>
+							{(footer.enabled ?? true) && <div className='flex justify-between items-center border-neutral-800 px-6 sm:px-7 py-3 sm:py-4 border-t w-full'>
+								{footer.subtitle && <div className='font-medium text-neutral-500 text-xs sm:text-sm'>
+									{footer.subtitle}
+								</div>}
+								{(footer.hint ?? true) && <div className='flex items-center gap-2 font-medium text-white text-xs sm:text-sm'>
+									View Media
+									<div className='flex justify-center items-center bg-white/5 px-2 pt-1 rounded-md text-xs'>↵</div>
+								</div>}
+							</div>}
 						</div>
-						{(footer.enabled ?? true) && <div className='flex justify-between items-center border-neutral-800 px-6 sm:px-7 py-3 sm:py-4 border-t w-full'>
-							{footer.subtitle && <div className='font-medium text-neutral-500 text-xs sm:text-sm'>
-								{footer.subtitle}
-							</div>}
-							{(footer.hint ?? true) && <div className='flex items-center gap-2 font-medium text-white text-xs sm:text-sm'>
-								View Media
-								<div className='flex justify-center items-center bg-white/5 px-2 pt-1 rounded-md text-xs'>↵</div>
-							</div>}
-						</div>}
-					</div>
+					</animated.div>
 				</Dialog.Content>
-			</Dialog.Portal>
+			</> : null)}
 		</Dialog.Root>
 	</>;
 }

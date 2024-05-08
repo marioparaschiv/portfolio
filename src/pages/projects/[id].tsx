@@ -43,7 +43,7 @@ function Project() {
 					<ArrowLeft size={12} />	Browse
 				</Button>
 				<div className='ml-auto'>
-					{project.url && <Link className='flex justify-end items-center gap-2' target='_blank' to={project.url}>
+					{project.url && <Link className='flex justify-end items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.url}>
 						Visit Website <ArrowTopRightIcon />
 					</Link>}
 				</div>
@@ -86,7 +86,7 @@ function Project() {
 									Solutions
 								</Typography>
 								<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-wrap'>
-									{project.solutions.map((solution, index) => <Link id={solution.url + index} to={solution.url} className='text-blue-500 hover:underline'>
+									{project.solutions.map((solution, index) => <Link key={solution.url + index} to={solution.url} className='focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-white text-blue-500 hover:underline'>
 										{solution.name}
 									</Link>) || 'None.'}
 								</Typography>
@@ -96,57 +96,65 @@ function Project() {
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Predecessor
 							</Typography>
-							<Card className='min-w-fit cursor-pointer' onClick={() => navigate('/projects/' + precedessor.id)}>
-								<div className='flex items-center gap-4'>
-									<img
-										loading='eager'
-										decoding='async'
-										className='rounded-lg h-12 object-cover'
-										src={precedessor.icon.path}
-									/>
-									<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
-										<div className='flex flex-col'>
-											<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
-												{precedessor.name}
-											</Typography>
-											<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
-												{precedessor.type}
-											</Typography>
+							<Link className='group focus-visible:outline-none focus-visible:ring-0' to={'/projects/' + precedessor.id}>
+								<Card
+									className='group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white min-w-fit cursor-pointer'
+									tabIndex={0}
+									role='button'
+								>
+									<div className='flex items-center gap-4'>
+										<img
+											loading='eager'
+											decoding='async'
+											className='rounded-lg h-12 object-cover'
+											src={precedessor.icon.path}
+										/>
+										<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
+											<div className='flex flex-col'>
+												<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
+													{precedessor.name}
+												</Typography>
+												<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
+													{precedessor.type}
+												</Typography>
+											</div>
+										</div>
+										<div className='ml-auto'>
+											<LinkIcon size={18} />
 										</div>
 									</div>
-									<div className='ml-auto'>
-										<LinkIcon size={18} />
-									</div>
-								</div>
-							</Card>
+								</Card>
+							</Link>
 						</div>}
 						{successor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Successor
 							</Typography>
-							<Card className='min-w-fit cursor-pointer' onClick={() => navigate('/projects/' + successor.id)}>
-								<div className='flex items-center gap-4'>
-									<img
-										loading='eager'
-										decoding='async'
-										className='rounded-lg h-12 object-cover'
-										src={successor.icon.path}
-									/>
-									<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
-										<div className='flex flex-col'>
-											<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
-												{successor.name}
-											</Typography>
-											<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
-												{successor.type}
-											</Typography>
+							<Link className='group focus-visible:outline-none focus-visible:ring-0' to={'/projects/' + successor.id}>
+								<Card className='group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white min-w-fit cursor-pointer pointer-events-auto'>
+									<div className='flex items-center gap-4'>
+										<img
+											loading='eager'
+											decoding='async'
+											className='rounded-lg h-12 object-cover'
+											src={successor.icon.path}
+										/>
+										<div className='flex md:flex-col justify-between md:justify-start items-start gap-1 w-full md:w-auto'>
+											<div className='flex flex-col'>
+												<Typography tag='h1' className='font-bold text-sm text-white sm:text-base md:text-lg lg:text-lg'>
+													{successor.name}
+												</Typography>
+												<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-sm'>
+													{successor.type}
+												</Typography>
+											</div>
+										</div>
+										<div className='ml-auto'>
+											<LinkIcon size={18} />
 										</div>
 									</div>
-									<div className='ml-auto'>
-										<LinkIcon size={18} />
-									</div>
-								</div>
-							</Card>
+								</Card>
+							</Link>
 						</div>}
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>

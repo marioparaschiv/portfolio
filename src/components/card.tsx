@@ -9,7 +9,7 @@ type CardProps = React.HTMLProps<HTMLDivElement> & VariantProps<typeof styles.hi
 
 const styles = {
 	container: cva({
-		base: 'group relative flex rounded-2xl hover:shadow-md hover:shadow-black/5 bg-neutral-900/75 hover:scale-[1.03] duration-200 transition-all ease-out p-6 text-neutral-400',
+		base: 'group relative focus-visible:ring-none focus-visible:outline-none flex rounded-2xl hover:shadow-md hover:shadow-black/5 bg-neutral-900/75 hover:scale-[1.03] duration-200 transition-all ease-out p-6 text-neutral-400',
 		variants: {
 			highlights: {
 				white: 'group-hover:border-white/50 group-hover:bg-white/20 selection:bg-neutral-400/50',
@@ -36,7 +36,7 @@ const styles = {
 		}
 	}),
 	border: cva({
-		base: 'absolute inset-0 rounded-2xl ring-1 ring-inset transition-all ring-white/10',
+		base: 'absolute focus-visible:ring-none focus-visible:outline-none inset-0 rounded-2xl ring-1 ring-inset transition-all ring-white/10',
 		variants: {
 			border: {
 				white: 'ring-white/5 group-hover:ring-white/10',

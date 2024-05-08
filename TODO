@@ -3,8 +3,8 @@
 ✓ Complete browse projects section.
 ✓ Add individual project's section.
 ✓ Improve performance of <Technologies /> component.
+✓ Fix header preventing the user from clicking on the page contents.
+⧗ Style outline ring for keyboard-based navigation.
 ⧗ Add image picker to each individual project's page.
 ✕ Improve carousel dots/navigation.
-✓ Fix header preventing the user from clicking on the page contents.
 ✕ Add information about each project.
-✕ Style outline ring for keyboard-based navigation.
