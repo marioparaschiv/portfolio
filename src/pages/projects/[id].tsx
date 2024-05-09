@@ -37,7 +37,7 @@ function Project() {
 	const successor = project.successor && config.projects.find(p => p.id === project.successor);
 
 	return <Page section={project.name} className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
-		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 w-full max-w-7xl animate-in duration-500 fade-in-0'>
+		<div className='flex flex-col items-center gap-16 m-auto zoom-in-105 w-full max-w-7xl animate-in duration-500 $1 fade-in-0'>
 			<div className='flex justify-between items-center px-8 w-full'>
 				<Button className='gap-2' size='sm' onClick={() => navigate('/projects')}>
 					<ArrowLeft size={12} />	Browse

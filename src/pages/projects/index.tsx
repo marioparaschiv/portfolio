@@ -1,9 +1,9 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
 import Typography from '~/components/typography';
-import { ArrowRight, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
+import { ArrowRight } from 'lucide-react';
 import Button from '~/components/button';
 import config from '@config.json';
 import { cn } from '~/utils';
@@ -16,30 +16,23 @@ export const order = 3;
 
 function Projects() {
 	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
-		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
-			{import.meta.env.DEV ? <>
-				<Carousel className='mt-5 h-full' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: false }}>
-					<div className='flex flex-col'>
-						<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
-							{config.projects.map((project, index) => <CarouselItem key={index}>
-								<Project {...project} />
-							</CarouselItem>)}
-						</CarouselContent>
+		<div className='flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 $1 fade-in-0'>
+			<Carousel className='mt-5 h-full' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: false }}>
+				<div className='flex flex-col'>
+					<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
+						{config.projects.map((project, index) => <CarouselItem key={index}>
+							<Project {...project} />
+						</CarouselItem>)}
+					</CarouselContent>
+				</div>
+				<div className='flex justify-center mx-12 md:mx-24 mt-6'>
+					<CarouselDots />
+					<div className='flex justify-center items-center gap-2 ml-auto'>
+						<CarouselPrevious />
+						<CarouselNext />
 					</div>
-					<div className='flex justify-center mx-12 md:mx-24 mt-6'>
-						<CarouselDots />
-						<div className='flex justify-center items-center gap-2 ml-auto'>
-							<CarouselPrevious />
-							<CarouselNext />
-						</div>
-					</div>
-				</Carousel>
-			</> : <>
-				<Code className='text-neutral-400' size={256} strokeWidth={2} />
-				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
-					Under construction.
-				</Typography>
-			</>}
+				</div>
+			</Carousel>
 		</div>
 	</Page>;
 }

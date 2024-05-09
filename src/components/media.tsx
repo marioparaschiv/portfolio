@@ -199,7 +199,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 				<Dialog.Content asChild forceMount>
 					<animated.div
 						style={{ opacity: styles.opacity, scale: styles.scale }}
-						className='top-1/2 left-1/2 absolute !-translate-x-1/2 !-translate-y-1/2'
+						className='top-1/2 left-1/2 absolute w-full max-w-xl !-translate-x-1/2 !-translate-y-1/2'
 						onKeyDown={(event) => {
 							switch (event.key) {
 								case 'ArrowDown':
