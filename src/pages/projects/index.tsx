@@ -3,7 +3,7 @@ import Typography from '~/components/typography';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Code } from 'lucide-react';
 import Button from '~/components/button';
 import { cn, median } from '~/utils';
 import config from '@config.json';
@@ -18,7 +18,7 @@ export const order = 3;
 function Projects() {
 	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
-			<Carousel className='mt-5 h-full' opts={{
+			{import.meta.env.DEV ? <Carousel className='mt-5 h-full' opts={{
 				align: 'center',
 				startIndex: config.projects.length % 2 === 0 ? config.projects.length / 2 : median([...new Array(config.projects.length).keys()]),
 				skipSnaps: true,
@@ -38,7 +38,12 @@ function Projects() {
 						<CarouselNext />
 					</div>
 				</div>
-			</Carousel>
+			</Carousel> : <>
+				<Code className='text-neutral-400' size={256} strokeWidth={2} />
+				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
+					Under construction.
+				</Typography>
+			</>}
 		</div>
 	</Page>;
 }
