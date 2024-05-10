@@ -53,10 +53,26 @@
 			],
 			"predecessor": "enmity",
 			"responsibilities": [
-				"I was solely responsible for "
+				"Responsibilities here."
 			],
-			"technologies": [],
+			"technologies": [
+				"TypeScript",
+				"Git",
+				"React",
+				"Tailwind CSS",
+				"Go"
+			],
 			"solutions": [
+				{
+					"type": "link",
+					"name": "Client",
+					"url": "https://github.com/unbound-mod/client"
+				},
+				{
+					"type": "link",
+					"name": "Backend",
+					"url": "https://github.com/unbound-mod/backend"
+				},
 				{
 					"type": "link",
 					"name": "Backend",
@@ -71,33 +87,18 @@
 			"images": [
 				{
 					"src": "/img/projects/enmity/thumbnail.png",
-					"title": "Test",
+					"title": "Application Overview",
 					"subtitle": "Preview of the many features Unbound has to offer."
 				},
 				{
 					"src": "/img/projects/unbound/thumbnail.png",
-					"title": "123",
-					"subtitle": "Preview of the many features Unbound has to offer."
+					"title": "Themes",
+					"subtitle": "Customizable user-created themes to alter the appearance of the app."
 				},
 				{
 					"src": "/img/projects/kiwa/thumbnail.png",
-					"title": "Hi",
-					"subtitle": "Preview of the many features Unbound has to offer."
-				},
-				{
-					"src": "/img/projects/unbound/thumbnail.png",
-					"title": "Bye",
-					"subtitle": "Preview of the many features Unbound has to offer."
-				},
-				{
-					"src": "/img/projects/unbound/thumbnail.png",
-					"title": "Application Overview",
-					"subtitle": "Preview of the many features Unbound has to offer."
-				},
-				{
-					"src": "/img/projects/unbound/thumbnail.png",
-					"title": "Application Overview",
-					"subtitle": "Preview of the many features Unbound has to offer."
+					"title": "Plugins",
+					"subtitle": "Addons featuring unlimited additional functionality. The world is your limit."
 				}
 			]
 		},

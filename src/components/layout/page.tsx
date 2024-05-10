@@ -19,7 +19,7 @@ function Page({ section, before, after, children, className, headerProps, bodyPr
 		</Helmet>
 		<Header {...(headerProps ?? {})} />
 		{before ? before : ''}
-		<div {...props} className={cn('flex flex-col gap-[10px] min-h-[100vh] px-0 py-5 before:pointer-events-none before:fixed before:inset-0 before:-top-64 before:bg-grid before:bg-top before:bg-no-repeat before:opacity-70', className)}>
+		<div {...props} className={cn('overflow-hidden flex flex-col gap-[10px] flex-1 px-0 py-5 before:pointer-events-none before:fixed before:inset-0 before:-top-64 before:bg-grid before:bg-top before:bg-no-repeat before:opacity-70', className)}>
 			{children}
 		</div>
 		{after ? after : ''}

@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { Page } from '~/components/layout';
 import { ArrowRight } from 'lucide-react';
 import Button from '~/components/button';
+import { cn, median } from '~/utils';
 import config from '@config.json';
-import { cn } from '~/utils';
 
 export const path = '/projects';
 export const element = Projects;
@@ -14,10 +14,16 @@ export const element = Projects;
 export const header = true;
 export const order = 3;
 
+
 function Projects() {
 	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
-		<div className='flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 $1 fade-in-0'>
-			<Carousel className='mt-5 h-full' opts={{ align: 'center', startIndex: 12 % 2 || 12 / 2, skipSnaps: true, loop: false }}>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
+			<Carousel className='mt-5 h-full' opts={{
+				align: 'center',
+				startIndex: config.projects.length % 2 === 0 ? config.projects.length / 2 : median([...new Array(config.projects.length).keys()]),
+				skipSnaps: true,
+				loop: true
+			}}>
 				<div className='flex flex-col'>
 					<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 						{config.projects.map((project, index) => <CarouselItem key={index}>
@@ -100,13 +106,20 @@ function CarouselDots() {
 		function onSlideChange() {
 			const selected = carousel.api?.selectedScrollSnap() ?? 0;
 
+
 			setIndex(selected);
 		}
 
+		onSlideChange();
+
+		carousel.api?.on('reInit', onSlideChange);
 		carousel.api?.on('scroll', onSlideChange);
 
-		return () => void carousel.api?.off('scroll', onSlideChange);
-	}, [carousel.api]);
+		return () => {
+			carousel.api?.off('reInit', onSlideChange);
+			carousel.api?.off('scroll', onSlideChange);
+		};
+	}, [carousel]);
 
 	return <div className='flex justify-center items-center gap-2'>
 		{config.projects.map((_, index) => <div

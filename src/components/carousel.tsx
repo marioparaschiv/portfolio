@@ -1,7 +1,7 @@
 'use client';
 
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import type { EmblaCarouselType, EmblaEventType } from 'embla-carousel';
+import type { EmblaCarouselType } from 'embla-carousel';
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
 import { useCallback, useRef } from 'react';
 import * as React from 'react';
@@ -74,51 +74,67 @@ const Carousel = React.forwardRef<
 
 		const tweenFactor = useRef(0);
 
-		const tweenOpacity = useCallback(
-			(emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-				const engine = emblaApi.internalEngine();
-				const scrollProgress = emblaApi.scrollProgress();
-				const slidesInView = emblaApi.slidesInView();
-				const isScrollEvent = eventName === 'scroll';
+		const animate = useCallback((api: EmblaCarouselType) => {
+			const scrollProgress = api.scrollProgress();
+			const engine = api.internalEngine();
+			const list = api.scrollSnapList();
 
-				emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-					let diffToTarget = scrollSnap - scrollProgress;
-					const slidesInSnap = engine.slideRegistry[snapIndex];
+			for (let index = 0; index < list.length; index++) {
+				const snap = list[index];
 
-					slidesInSnap.forEach((slideIndex) => {
-						if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+				let diffToTarget = snap - scrollProgress;
 
-						if (engine.options.loop) {
-							engine.slideLooper.loopPoints.forEach((loopItem) => {
-								const target = loopItem.target();
+				const slidesInSnap = engine.slideRegistry[index];
+				for (const slideIndex of slidesInSnap) {
+					// Fix looping
+					if (engine.options.loop) {
+						for (const point of engine.slideLooper.loopPoints) {
+							const target = point.target();
 
-								if (slideIndex === loopItem.index && target !== 0) {
-									const sign = Math.sign(target);
+							if (slideIndex === point.index && target !== 0) {
+								const sign = Math.sign(target);
 
-									if (sign === -1) {
-										diffToTarget = scrollSnap - (1 + scrollProgress);
-									}
-									if (sign === 1) {
-										diffToTarget = scrollSnap + (1 - scrollProgress);
-									}
+								if (sign === -1) {
+									diffToTarget = snap - (1 + scrollProgress);
 								}
-							});
+
+								if (sign === 1) {
+									diffToTarget = snap + (1 - scrollProgress);
+								}
+							}
 						}
+					}
 
-						const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-						const opacity = numberWithinRange(tweenValue, 0.6, 1).toString();
-						const scale = numberWithinRange(tweenValue, 0.85, 1).toString();
+					const value = 1 - Math.abs(diffToTarget * tweenFactor.current);
+					const opacity = numberWithinRange(value, 0.6, 1).toString();
+					const scale = numberWithinRange(value, 0.85, 1).toString();
 
-						const nodes = emblaApi.slideNodes();
-						const node = nodes[slideIndex];
+					const nodes = api.slideNodes();
 
-						node.style.opacity = opacity;
-						node.style.transform = `scale(${scale})`;
-					});
-				});
-			},
-			[]
-		);
+					const container = nodes[slideIndex];
+					const node = container?.firstChild as HTMLElement;
+					if (!node || container?.getAttribute('data-carousel-item') !== 'true') return;
+
+					// Override scale with our own while still keeping all other transforms.
+					const modifiers = [`scale(${scale})`];
+					const prev = node.attributeStyleMap.get('transform');
+					if (prev) {
+						const transform = prev as CSSStyleValue & { values: typeof Map.prototype.values; };
+
+						for (const declaration of transform.values()) {
+							if (declaration[Symbol.toStringTag] === 'CSSScale') {
+								continue;
+							}
+
+							modifiers.push(declaration.toString());
+						}
+					}
+
+					node.style.opacity = opacity;
+					node.style.transform = modifiers.join(' ');
+				}
+			}
+		}, []);
 
 		const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
 			tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
@@ -170,12 +186,12 @@ const Carousel = React.forwardRef<
 			if (!api) return;
 
 			setTweenFactor(api);
-			tweenOpacity(api);
-			api
-				.on('reInit', setTweenFactor)
-				.on('reInit', tweenOpacity)
-				.on('scroll', tweenOpacity);
-		}, [api, tweenOpacity]);
+			animate(api);
+
+			api.on('reInit', setTweenFactor);
+			api.on('reInit', animate);
+			api.on('scroll', animate);
+		}, [api, animate, setTweenFactor]);
 
 		React.useEffect(() => {
 			if (!api) {
@@ -239,6 +255,7 @@ const CarouselContent = React.forwardRef<
 		</div>
 	);
 });
+
 CarouselContent.displayName = 'CarouselContent';
 
 const CarouselItem = React.forwardRef<
@@ -250,6 +267,7 @@ const CarouselItem = React.forwardRef<
 	return (
 		<div
 			ref={ref}
+			data-carousel-item={true}
 			role='group'
 			aria-roledescription='slide'
 			className={cn(

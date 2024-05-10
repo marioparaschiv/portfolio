@@ -42,7 +42,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 	const transitions = useTransition(opened, {
 		from: {
 			opacity: 0,
-			scale: 0.98
+			scale: 0.95
 		},
 		enter: {
 			opacity: 1,
@@ -50,7 +50,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		},
 		leave: {
 			opacity: 0,
-			scale: 0.98
+			scale: 0.95
 		},
 		config: {
 			easing: easings.easeInOutQuad,
@@ -165,7 +165,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 	}, []);
 
 	return <>
-		<a className='group focus-visible:outline-none focus-visible:ring-0 relative flex justify-center items-center border-neutral-800 bg-neutral-900 border rounded-xl lg:rounded-3xl overflow-hidden aspect-[16/9]' href={images[selected].src}>
+		<a className='group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white relative flex justify-center items-center border-neutral-800 bg-neutral-900 border rounded-xl lg:rounded-3xl overflow-hidden aspect-[16/9]' href={images[selected].src}>
 			<img
 				loading='lazy'
 				decoding='async'
@@ -173,7 +173,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 				src={images[selected].src}
 				onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 				sizes='100vw'
-				className='group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white absolute w-full max-w-none h-full text-transparent object-cover scale-[1.02]'
+				className='absolute w-full max-w-none h-full text-transparent object-cover scale-[1.02]'
 			/>
 		</a>
 		<Dialog.Root open={opened} onOpenChange={setOpened} {...props}>
