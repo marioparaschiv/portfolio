@@ -73,8 +73,34 @@
 	* {
 		@apply border-border
 	}
+
 	body {
 		@apply bg-background text-foreground;
+	}
+}
+
+@layer utilities {
+	.animate-underline {
+		position: relative;
+	}
+
+	.animate-underline::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		transform: scaleX(0);
+		height: 2px;
+		bottom: 0;
+		border-radius: 10px;
+		left: 0;
+		background-color: currentColor;
+		transform-origin: bottom right;
+		transition: transform 0.25s ease-out;
+	}
+
+	.animate-underline:hover::after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
 	}
 }
 

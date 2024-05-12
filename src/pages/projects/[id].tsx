@@ -37,14 +37,14 @@ function Project() {
 	const successor = project.successor && config.projects.find(p => p.id === project.successor);
 
 	return <Page section={project.name} headerProps={{ className: 'sticky' }} className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
-		<div className='flex flex-col items-center gap-16 m-auto zoom-in-105 w-full max-w-7xl animate-in duration-500 $1 fade-in-0'>
+		<div className='flex flex-col items-center gap-16 m-auto zoom-in-105 w-full max-w-7xl animate-in duration-500 mt-8 fade-in-0'>
 			<div className='flex justify-between items-center px-8 w-full'>
 				<Button className='gap-2' size='sm' onClick={() => navigate('/projects')}>
 					<ArrowLeft size={12} />	Browse
 				</Button>
 				<div className='ml-auto'>
-					{project.url && <Link className='flex justify-end items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.url}>
-						Visit Website <ArrowTopRightIcon />
+					{project.url && <Link className='flex justify-end items-center gap-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.url}>
+						<span className='animate-underline'>Visit Website</span> <ArrowTopRightIcon />
 					</Link>}
 				</div>
 			</div>
@@ -71,7 +71,7 @@ function Project() {
 							</Tag>
 						</div>
 					</div>
-					<div className='flex flex-col gap-3 md:gap-5 lg:gap-8'>
+					<div className='flex flex-col gap-4 md:gap-5 lg:gap-8'>
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Overview
@@ -80,18 +80,18 @@ function Project() {
 								{project.overview.join('\n') || 'None.'}
 							</Typography>
 						</div>
-						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							{project.solutions?.length && <>
-								<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
-									Solutions
-								</Typography>
-								<Typography tag='p' className='font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-wrap'>
-									{project.solutions.map((solution, index) => <Link key={solution.url + index} to={solution.url} className='focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-white text-blue-500 hover:underline'>
+						{project.solutions?.length && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
+							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
+								Solutions
+							</Typography>
+							<div className='flex flex-col gap-2 font-medium text-neutral-400 text-xs lg:text-base truncate whitespace-pre-wrap'>
+								{project.solutions.map((solution, index) => <div className='flex gap-2'>
+									<Link key={solution.url + index} to={solution.url} className='focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-white text-blue-500 animate-underline'>
 										{solution.name}
-									</Link>) || 'None.'}
-								</Typography>
-							</>}
-						</div>
+									</Link>
+								</div>)}
+							</div>
+						</div>}
 						{precedessor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Predecessor

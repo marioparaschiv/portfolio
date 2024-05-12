@@ -1,7 +1,7 @@
-import * as Dialog from '@radix-ui/react-dialog';
 import { animated, easings, useSpringValue, useTransition } from '@react-spring/web';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowUpDown } from 'lucide-react';
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Card from '~/components/card';
 
 interface Image {
@@ -82,9 +82,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 	}, [search, hovered]);
 
 	const animateProperties = useCallback((target?: HTMLElement, immediate: boolean = false) => {
-		if (!target) {
-			return;
-		}
+		if (!target) return;
 
 		const rect = target.getBoundingClientRect();
 
@@ -118,10 +116,15 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		// Account for the highlight element
 		const child = index + 1;
 
-		listRef.current.children[child]?.scrollIntoView({
-			behavior: 'smooth',
-			block: 'center',
-		});
+		// const hasHorizontalScrollbar = listRef.current.scrollWidth > listRef.current.clientWidth;
+		const hasVerticalScrollbar = listRef.current.scrollHeight > listRef.current.clientHeight;
+
+		if (hasVerticalScrollbar) {
+			listRef.current.children[child]?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'center'
+			});
+		}
 	}, [listRef]);
 
 
@@ -130,10 +133,10 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		scrollToIndex(index);
 	}, [items]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (!ref.current) return;
 		animateProperties(ref.current);
-	}, [opened, ref.current]);
+	}, [opened, ref.current, hovered]);
 
 	const moveDown = useCallback(() => {
 		setLocked(true);
@@ -159,9 +162,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 
 		window.addEventListener('resize', onResize);
 
-		return () => {
-			window.removeEventListener('resize', onResize);
-		};
+		return () => window.removeEventListener('resize', onResize);
 	}, []);
 
 	return <>
@@ -177,13 +178,20 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 			/>
 		</a>
 		<Dialog.Root open={opened} onOpenChange={setOpened} {...props}>
-			<Dialog.Trigger asChild>
-				<Card onClick={() => setOpened(!opened)} tabIndex={0} role='button' className='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' contentClassName='group flex items-center'>
-					<div className='flex flex-col gap-1'>
+			<Dialog.Trigger tabIndex={-1} className='appearance-none ![all:unset]'>
+				<Card
+					aria-pressed={opened}
+					tabIndex={0}
+					role='button'
+					className='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white'
+					contentClassName='group flex items-center'
+					onClick={() => setOpened(!opened)}
+				>
+					<div className='flex flex-col gap-1 overflow-hidden'>
 						<span className='font-semibold text-sm text-white sm:text-base md:text-lg lg:text-xl truncate'>
 							{images[selected].title}
 						</span>
-						<span className='text-neutral-300 text-xs md:text-sm truncate'>
+						<span className='text-neutral-300 text-xs md:text-sm'>
 							{images[selected].subtitle}
 						</span>
 					</div>
@@ -192,24 +200,26 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 					</div>
 				</Card>
 			</Dialog.Trigger>
-			{transitions((styles, item) => item ? <>
+			{transitions((styles, item) => item ? <Dialog.Portal>
 				<Dialog.Overlay asChild forceMount>
 					<animated.div style={{ opacity: styles.opacity }} className='fixed inset-0 bg-black/50 backdrop-blur-sm' />
 				</Dialog.Overlay>
 				<Dialog.Content asChild forceMount>
 					<animated.div
 						style={{ opacity: styles.opacity, scale: styles.scale }}
-						className='top-1/2 left-1/2 absolute w-full max-w-xl !-translate-x-1/2 !-translate-y-1/2'
+						className='top-1/2 left-1/2 fixed w-full max-w-xl !-translate-x-1/2 !-translate-y-1/2'
 						onKeyDown={(event) => {
 							switch (event.key) {
 								case 'ArrowDown':
 									event.preventDefault();
 									moveDown();
+									event.stopPropagation();
 									break;
 
 								case 'ArrowUp':
 									event.preventDefault();
 									moveUp();
+									event.stopPropagation();
 									break;
 								case 'Enter':
 									if (!items.length) return;
@@ -233,22 +243,22 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 								className='relative z-0 flex flex-col px-3 sm:px-4 py-2 sm:py-3 w-full h-full max-h-80 overflow-auto'
 							>
 								{/* Mover */}
-								{items.length && <animated.div
+								{items.length !== 0 && <animated.div
+									className='z-10 absolute bg-white/10 rounded-lg sm:rounded-xl w-full h-[87.5px]'
 									style={{
 										width: animation.width,
 										height: animation.height,
 										top: animation.top
 									}}
-									className='z-10 absolute bg-white/10 rounded-lg sm:rounded-xl w-full h-[87.5px]'
 								/>}
-								{items.length === 0 && <div className='p-12 font-bold text-center'>
-									No items found containing '{search.toLowerCase()}'.
+								{items.length === 0 && <div className='p-12 text-center'>
+									No items found containing <b>'{search.toLowerCase()}'.</b>
 								</div>}
 								{items.map((image, index) => <div
 									key={image.src + index}
 									data-hover-uuid={uuid}
 									className='relative z-10 flex items-center gap-3 p-1.5 sm:p-2 cursor-pointer'
-									ref={(r) => {
+									ref={function (r) {
 										if (hovered === index) {
 											ref.current = r;
 										} else {
@@ -279,7 +289,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 										</img>
 									</div>
 									<div className='flex-1'>
-										<div className='font-medium text-white text-xs sm:text-sm'>
+										<div className='font-medium text-sm text-white sm:text-md'>
 											{image.title}
 										</div>
 										<div className='text-neutral-500 text-xs'>
@@ -300,7 +310,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 						</div>
 					</animated.div>
 				</Dialog.Content>
-			</> : null)}
+			</Dialog.Portal> : null)}
 		</Dialog.Root>
 	</>;
 }
