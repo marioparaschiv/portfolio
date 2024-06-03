@@ -14,8 +14,8 @@ import config from '@config.json';
 export const path = '/projects/:id';
 export const element = Project;
 
-export const header = false;
-export const order = 3;
+export const showInHeader = false;
+export const headerOrder = 3;
 
 function Project() {
 	const { id } = useParams();

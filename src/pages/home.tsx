@@ -6,8 +6,8 @@ import config from '@config.json';
 export const path = '/';
 export const element = Home;
 
-export const header = true;
-export const order = 1;
+export const showInHeader = true;
+export const headerOrder = 1;
 
 function Home() {
 	const isMedium = useBreakpoint('md');

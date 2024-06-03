@@ -16,7 +16,7 @@ function Header(props: React.HTMLProps<HTMLElement>) {
 		<div className='flex justify-center items-center gap-4 pointer-events-none container'>
 			<NavigationMenu className='flex md:items-center w-full md:w-auto pointer-events-auto'>
 				<NavigationMenuList>
-					{Object.entries(Pages).sort(([, first], [, second]) => first.order - second.order).filter(([, instance]) => instance.header).map(([name, instance]) =>
+					{Object.entries(Pages).sort(([, first], [, second]) => first.headerOrder - second.headerOrder).filter(([, instance]) => instance.showInHeader).map(([name, instance]) =>
 						<NavigationMenuItem key={name}>
 							<NavigationMenuLink href={instance.path} className={cn('text-md cursor-pointer select-none transition-colors duration-200 font-semibold', (location.pathname === instance.path || (instance.path !== '/' && location.pathname.startsWith(instance.path))) && '!to-neutral-100')} onClick={e => (e.preventDefault(), navigate(instance.path))}>
 								{name}

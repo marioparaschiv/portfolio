@@ -11,8 +11,8 @@ import config from '@config.json';
 export const path = '/projects';
 export const element = Projects;
 
-export const header = true;
-export const order = 3;
+export const showInHeader = true;
+export const headerOrder = 3;
 
 
 function Projects() {
@@ -49,12 +49,12 @@ function Projects() {
 }
 
 function Project(props: ArrayToTuple<typeof config.projects>) {
-	const [width, setWidth] = useState<number>(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
+	const [width, setWidth] = useState<number>(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 100);
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		function onResize() {
-			setWidth(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 50);
+			setWidth(window.innerWidth >= 1080 ? 1080 : window.innerWidth - 100);
 		}
 
 		window.addEventListener('resize', onResize);
@@ -66,7 +66,7 @@ function Project(props: ArrayToTuple<typeof config.projects>) {
 		<img
 			loading='eager'
 			decoding='async'
-			className='h-[35rem] select-none object-cover'
+			className='h-[30rem] md:h-[35rem]  select-none object-cover'
 			alt={props.name}
 			style={{ width }}
 			src={props.thumbnail}

@@ -17,15 +17,15 @@ import React from 'react';
 export const path = '/about';
 export const element = React.memo(About);
 
-export const header = true;
-export const order = 2;
+export const showInHeader = true;
+export const headerOrder = 2;
 
 function About() {
 	const navigate = useNavigate();
 
 	return <Page section='About' className='flex justify-center items-center p-0 w-screen min-h-screen overflow-clip'>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 pt-20 md:pt-0 w-full md:w-auto animate-in duration-500 fade-in-0'>
-			<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
+			<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold short:text-3xl text-transparent'>
 				About me.
 			</Typography>
 			<div className='gap-2 md:gap-6 grid grid-cols-1 md:grid-cols-2 m-4 sm:m-0 p-4 w-full md:w-auto h-auto'>
@@ -48,9 +48,9 @@ function About() {
 					title='Work'
 					icon={<Icons.Briefcase />}
 				>
-					{config.about.work.join('\n')}
+					<span className='mb-5'>{config.about.work.join('\n')}</span>
 					<Button
-						className='mt-5 w-full'
+						className='mt-auto w-full'
 						variant='secondary'
 						size='sm'
 						onClick={() => navigate('/contact')}
@@ -63,7 +63,7 @@ function About() {
 					title='Technologies'
 					icon={<Icons.Code2 />}
 				>
-					<Technologies />
+					<Technologies identifierProps={{ className: 'short:text-xs' }} className='short:gap-y-1.5' />
 				</Item>
 			</div>
 		</div>
@@ -150,8 +150,8 @@ const Item = React.memo(({ title, icon, children, ...props }: ItemProps) => {
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<animated.div style={{ ...(!isMedium ? collapsed : {}) }}>
-				<div ref={ref} className='pt-4 text-sm whitespace-pre-wrap'>
+			<animated.div className='w-full h-full' style={{ ...(!isMedium ? collapsed : {}) }}>
+				<div ref={ref} className='pt-4 text-sm short:text-xs flex flex-col w-full h-full whitespace-pre-wrap'>
 					{children}
 				</div>
 			</animated.div>

@@ -11,14 +11,14 @@ import { cva } from 'cva';
 export const path = '/contact';
 export const element = Contact;
 
-export const header = true;
-export const order = 4;
+export const showInHeader = true;
+export const headerOrder = 4;
 
 function Contact() {
 	return <Page section='Contact' className='flex justify-center items-center p-0 w-screen min-h-screen overflow-clip'>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 pt-20 md:pt-0 w-full md:w-auto animate-in duration-500 fade-in-0'>
 			<div className='flex flex-col items-center gap-4'>
-				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
+				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold short:text-3xl text-transparent'>
 					Contact me.
 				</Typography>
 				<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.cv}>

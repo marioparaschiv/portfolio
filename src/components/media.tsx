@@ -74,8 +74,8 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		return result;
 	}, [search]);
 
+	// Out of bounds check
 	useEffect(() => {
-		// Out of bounds check
 		if ((items.length - 1) < hovered) {
 			setHovered(0);
 		}
@@ -242,7 +242,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 								ref={listRef}
 								className='relative z-0 flex flex-col px-3 sm:px-4 py-2 sm:py-3 w-full h-full max-h-80 overflow-auto'
 							>
-								{/* Mover */}
+								{/* Highlight */}
 								{items.length !== 0 && <animated.div
 									className='z-10 absolute bg-white/10 rounded-lg sm:rounded-xl w-full h-[87.5px]'
 									style={{
