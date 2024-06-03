@@ -50,7 +50,7 @@ function About() {
 				>
 					<span className='mb-5'>{config.about.work.join('\n')}</span>
 					<Button
-						className='mt-auto w-full'
+						className='mt-auto w-full flex-shrink-0'
 						variant='secondary'
 						size='sm'
 						onClick={() => navigate('/contact')}
