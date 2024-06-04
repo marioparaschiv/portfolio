@@ -21,7 +21,7 @@ function Contact() {
 				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold short:text-3xl text-transparent'>
 					Contact me.
 				</Typography>
-				<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.cv}>
+				<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.resume}>
 					<Tag className='group-focus-visible:ring-2 group-focus-visible:ring-white gap-2 hover:bg-brand/20 hover:border-brand/50 cursor-pointer'>
 						Resume <SquareArrowOutUpRight size={12} />
 					</Tag>

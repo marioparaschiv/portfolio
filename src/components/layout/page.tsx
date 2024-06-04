@@ -15,7 +15,10 @@ interface PageProps {
 function Page({ section, before, after, children, className, headerProps, bodyProps, ...props }: React.PropsWithChildren<PageProps>) {
 	return <div {...bodyProps}>
 		<Helmet>
-			<title>{section ? `${section} - Mario Paraschiv` : 'Mario Paraschiv'}</title>
+			<title>{[
+				section && `${section} »`,
+				'Mario Paraschiv'
+			].filter(Boolean).join(' ')}</title>
 		</Helmet>
 		<Header {...(headerProps ?? {})} />
 		{before ? before : ''}
