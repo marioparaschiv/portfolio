@@ -12,7 +12,7 @@ export const headerOrder = 1;
 function Home() {
 	const isMedium = useBreakpoint('md');
 
-	return <Page className='flex justify-center items-center p-0 w-screen min-h-screen overflow-hidden'>
+	return <Page className='flex justify-center items-center p-0 w-screen min-h-dvh overflow-hidden'>
 		<div className='relative flex flex-col justify-center items-center gap-4 w-full h-screen overflow-x-clip'>
 			<div
 				className='z-0 absolute opacity-30 zoom-in-0 w-[1000px] h-[1000px] animate-in duration-1000 ease-out fade-in'

@@ -16,7 +16,7 @@ export const headerOrder = 3;
 
 
 function Projects() {
-	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-screen overflow-hidden'>
+	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-dvh overflow-hidden'>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
 			{import.meta.env.DEV ? <Carousel className='mt-5 h-full' opts={{
 				align: 'center',
