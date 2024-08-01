@@ -1,9 +1,8 @@
-import { ExternalLink, Github, Linkedin, Mail, SquareArrowOutUpRight, Twitter } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Typography from '~/components/typography';
-import { Page } from '~/components/layout';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Card from '~/components/card';
-import Tag from '~/components/tag';
 import config from '@config.json';
 import { cn } from '~/utils';
 import { cva } from 'cva';
@@ -15,25 +14,23 @@ export const showInHeader = true;
 export const headerOrder = 4;
 
 function Contact() {
-	return <Page section='Contact' className='flex justify-center items-center p-0 w-screen min-h-dvh overflow-clip'>
-		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 pt-20 md:pt-0 w-full md:w-auto animate-in duration-500 fade-in-0'>
+	return <div className='flex min-h-[calc(100dvh-5dvh)] justify-center items-center p-0 overflow-clip'>
+		<Helmet>
+			<title>Contact » {config.name}</title>
+		</Helmet>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 w-full md:w-auto animate-in duration-500 fade-in-0'>
 			<div className='flex flex-col items-center gap-4'>
-				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold short:text-3xl text-transparent'>
-					Contact me.
+				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
+					Contact
 				</Typography>
-				<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.resume}>
-					<Tag className='group-focus-visible:ring-2 group-focus-visible:ring-white gap-2 hover:bg-brand/20 hover:border-brand/50 cursor-pointer'>
-						Resume <SquareArrowOutUpRight size={12} />
-					</Tag>
-				</a>
 			</div>
 			<div className='gap-2 md:gap-6 grid grid-cols-1 md:grid-cols-2 m-4 sm:m-0 p-4 w-full md:w-auto'>
 				<ContactCard
-					name='LinkedIn'
-					body={config.links.linkedin.text}
-					href={config.links.linkedin.href}
-					icon={<Linkedin size={24} />}
-					color='green'
+					name='Email'
+					body={config.links.email.text}
+					href={config.links.email.href}
+					icon={<Mail size={24} />}
+					color='red'
 				/>
 				<ContactCard
 					name='GitHub'
@@ -43,11 +40,11 @@ function Contact() {
 					color='blue'
 				/>
 				<ContactCard
-					name='Email'
-					body={config.links.email.text}
-					href={config.links.email.href}
-					icon={<Mail size={24} />}
-					color='red'
+					name='LinkedIn'
+					body={config.links.linkedin.text}
+					href={config.links.linkedin.href}
+					icon={<Linkedin size={24} />}
+					color='green'
 				/>
 				<ContactCard
 					name='Twitter / X'
@@ -58,7 +55,7 @@ function Contact() {
 				/>
 			</div>
 		</div>
-	</Page>;
+	</div>;
 }
 
 const styles = {

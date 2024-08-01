@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, type ElementRef } from 'react';
 import { animated, easings, useSpring } from '@react-spring/web';
-import Technologies from '~/components/technologies';
+import TechnologiesList from '~/components/technologies';
 import { useBreakpoint } from '~/components/hooks';
 import Typography from '~/components/typography';
 import { useNavigate } from 'react-router-dom';
-import { Page } from '~/components/layout';
+import { Helmet } from 'react-helmet-async';
 import { ChevronDown } from 'lucide-react';
 import Button from '~/components/button';
 import * as Icons from 'lucide-react';
@@ -18,35 +18,38 @@ export const path = '/about';
 export const element = React.memo(About);
 
 export const showInHeader = true;
-export const headerOrder = 2;
+export const headerOrder = 3;
 
 function About() {
 	const navigate = useNavigate();
 
-	return <Page section='About' className='flex justify-center items-center p-0 w-screen min-h-dvh overflow-clip'>
-		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-8 m-auto zoom-in-105 pt-20 md:pt-0 w-full md:w-auto animate-in duration-500 fade-in-0'>
-			<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold short:text-3xl text-transparent'>
-				About me.
+	return <div className='flex min-h-[calc(100dvh-5dvh)] justify-center items-center'>
+		<Helmet>
+			<title>About » {config.name}</title>
+		</Helmet>
+		<div className='relative slide-in-from-bottom-8 flex flex-col justify-center items-center gap-8 m-auto zoom-in-105 w-full md:w-auto animate-in duration-500 fade-in'>
+			<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
+				About
 			</Typography>
 			<div className='gap-2 md:gap-6 grid grid-cols-1 md:grid-cols-2 m-4 sm:m-0 p-4 w-full md:w-auto h-auto'>
 				<Item
 					highlights='red'
 					title='Information'
-					icon={<Icons.PersonStanding />}
+					icon={<Icons.PersonStanding size={14} />}
 				>
 					{config.about.information.join('\n')}
 				</Item>
 				<Item
 					highlights='blue'
-					title='Journey'
-					icon={<Icons.MapPinIcon />}
+					title='Values'
+					icon={<Icons.Shield size={14} />}
 				>
-					{config.about.journey.join('\n')}
+					{config.about.values.join('\n')}
 				</Item>
 				<Item
 					highlights='green'
 					title='Work'
-					icon={<Icons.Briefcase />}
+					icon={<Icons.Briefcase size={14} />}
 				>
 					<span className='mb-5'>{config.about.work.join('\n')}</span>
 					<Button
@@ -61,13 +64,13 @@ function About() {
 				<Item
 					highlights='purple'
 					title='Technologies'
-					icon={<Icons.Code2 />}
+					icon={<Icons.Code2 size={14} />}
 				>
-					<Technologies identifierProps={{ className: 'short:text-xs' }} className='short:gap-y-1.5' />
+					<TechnologiesList technologies={config.about.technologies} className='mt-2' />
 				</Item>
 			</div>
 		</div>
-	</Page>;
+	</div>;
 }
 
 const styles = {
@@ -91,17 +94,18 @@ const styles = {
 type ItemProps = React.ComponentProps<typeof Card> & {
 	title: string;
 	icon: React.ReactNode;
+	childrenClassName?: string;
 };
 
 const Item = React.memo(({ title, icon, children, ...props }: ItemProps) => {
+	const [height, setHeight] = useState<number | null>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef<ElementRef<'div'>>(null);
-	const [height, setHeight] = useState(0);
 	const isMedium = useBreakpoint('md');
 
 	const collapsed = useSpring({
 		opacity: isOpen || isMedium ? 1 : 0,
-		maxHeight: `${isOpen || isMedium ? height : 0}px`,
+		maxHeight: height ? `${isOpen || isMedium ? height : 0}px` : undefined,
 		transform: `scale(${isOpen || isMedium ? 1 : 0.90})`,
 		config: (event) => {
 			switch (event) {
@@ -127,7 +131,7 @@ const Item = React.memo(({ title, icon, children, ...props }: ItemProps) => {
 
 	useEffect(() => {
 		if (ref.current) {
-			setHeight(ref.current.scrollHeight);
+			setHeight(ref.current.offsetHeight);
 		}
 	}, [ref]);
 
@@ -150,8 +154,8 @@ const Item = React.memo(({ title, icon, children, ...props }: ItemProps) => {
 					<ChevronDown className={cn('transition-transform', isOpen && 'rotate-180')} />
 				</div>
 			</div>
-			<animated.div className='w-full h-full' style={{ ...(!isMedium ? collapsed : {}) }}>
-				<div ref={ref} className='pt-4 text-sm short:text-xs flex flex-col w-full h-full whitespace-pre-wrap'>
+			<animated.div className='w-full h-full' style={collapsed}>
+				<div ref={ref} className={cn('pt-4 text-sm flex flex-col w-full h-full whitespace-pre-wrap', props.childrenClassName)}>
 					{children}
 				</div>
 			</animated.div>

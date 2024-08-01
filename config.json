@@ -1,8 +1,7 @@
 {
-	"title": "Mario Paraschiv.",
-	"subtext": "Software Engineer devoted to creating fluid and easy to use software.",
+	"name": "Mario Paraschiv",
+	"subtext": "A self-taught Full-Stack Developer specializing in TypeScript.",
 	"location": "London, United Kingdom",
-	"resume": "/Resume.pdf",
 	"links": {
 		"email": {
 			"text": "me@marioparaschiv.com",
@@ -21,24 +20,154 @@
 			"href": "https://twitter.com/mariovparaschiv"
 		}
 	},
+	"technologiesOrder": [
+		"language",
+		"database",
+		"framework",
+		"tooling",
+		"library"
+	],
 	"about": {
 		"information": [
-			"I am driven by competitiveness, aiming to develop polished, performant, and beautifully designed applications. I strive for perfection and invest heavily in optimization, whether it's in my code or personal life. Finding flaws in myself and my work drives me to perfect my craft.",
+			"Hi! I'm Mario, a self-taught Full-Stack Developer based in London, specialising in TypeScript, Go, Next.js, React.js, and SSR / SPA / SaaS applications.",
 			"",
-			"Recognizing the importance of self-care, I prioritize activities like working out and getting enough sleep, considering them crucial steps for promoting mental growth and accelerating my career as a Software Engineer."
+			"I spend my free time tinkering with existing software to extend its functionality, along with learning how tools and frameworks work internally to better optimise my work."
 		],
-		"journey": [
-			"My coding journey commenced 5 years ago with Discord's API user experience enhancement using bots. It involved integrating a back-end service, API and website for streamlined user configuration, powered by OAuth2.",
+		"values": [
+			"Providing transparency, excellence, integrity, and solving my client's problems is my top priority.",
 			"",
-			"Progressing further, I immersed myself in web development, mastering ReactJS and many popular technologies such as Tailwind CSS, Next.js and animation libraries to achieve the peak visual experience. To this day, I relish the opportunity to delve into new concepts and technologies, constantly pushing the boundaries of my understanding and skills."
+			"I hold myself and my work to the highest standards. When you work with me, you can expect exceptional quality in every aspect — the little details paint the bigger picture."
 		],
 		"work": [
-			"Feel free to reach out if you are interested in working with me. I am dedicated to exploring collaborative opportunities that align with my expertise and passions.",
+			"Feel free to reach out if you are interested in working with me. I would be happy to explore any opportunity that aligns with my values.",
 			"",
-			"Whether you have a project in mind, wish to discuss potential collaborations, or simply want to connect, I am always open to new opportunities and eager to engage in meaningful discussions."
+			"Whether you have a project in mind, would like something done the right way, wish to discuss potential collaborations, or simply want to connect, please do not hesitate to get in contact."
+		],
+		"technologies": [
+			"TypeScript",
+			"JavaScript",
+			"Go",
+			"Postgres",
+			"Redis",
+			"Mongo",
+			"Firebase",
+			"SQLite",
+			"React",
+			"Next",
+			"Tailwind",
+			"Svelte",
+			"SCSS",
+			"Electron",
+			"Express",
+			"Git",
+			"Docker",
+			"AWS"
 		]
 	},
 	"projects": [
+		{
+			"name": "Kiwa",
+			"id": "kiwa",
+			"type": "Website",
+			"repository": "https://github.com/marioparaschiv/kiwa",
+			"url": "https://kiwasushi.vercel.app/",
+			"timeFrame": "Jan 2023 - Jan 2024",
+			"badge": {
+				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
+				"text": "Production"
+			},
+			"overview": [
+				"Kiwa is an Asian fusion restaurant based in Aix-en-Provence, France.",
+				"",
+				"Built with React.js and the popular UI library @shadcn/ui, the website features a monochrome colour scheme to draw visitors' attention to the restaurant's catering services."
+			],
+			"responsibilities": [
+				"I was the sole developer of this project.",
+				"",
+				"I was responsible for every aspect of the website, including but not limited to: design, functionality, performance, layout, and accessibility.",
+				"",
+				"The website makes use of a proprietary internationalisation implementation. It also uses the new Chrome View Transitions API, allowing seamless transitions such as switching between dark and light modes."
+			],
+			"technologies": [
+				"React",
+				"TypeScript",
+				"Tailwind",
+				"Vite",
+				"Git",
+				"Radix UI",
+				"React Router",
+				"SWC",
+				"Zod",
+				"shadcn/ui"
+			],
+			"icon": {
+				"path": "/img/projects/kiwa/icon.png",
+				"styles": "ml-2"
+			},
+			"thumbnail": "/img/projects/kiwa/thumbnail.png",
+			"images": [
+				{
+					"src": "/img/projects/kiwa/thumbnail.png",
+					"title": "Overview",
+					"subtitle": "Preview of the two main pages of the website."
+				},
+				{
+					"src": "/img/projects/kiwa/landing-dark.png",
+					"title": "Landing Page - Dark",
+					"subtitle": "A preview of the landing page in dark mode."
+				},
+				{
+					"src": "/img/projects/kiwa/landing-light.png",
+					"title": "Landing Page - Light",
+					"subtitle": "A preview of the landing page in light mode."
+				},
+				{
+					"src": "/img/projects/kiwa/menu-dark.png",
+					"title": "Menu - Dark",
+					"subtitle": "A preview of the menu page in dark mode."
+				},
+				{
+					"src": "/img/projects/kiwa/menu-light.png",
+					"title": "Menu - Light",
+					"subtitle": "A preview of the menu page in light mode."
+				},
+				{
+					"src": "/img/projects/kiwa/reservation-dark.png",
+					"title": "Reservation - Dark",
+					"subtitle": "A preview of the reservation page in dark mode."
+				},
+				{
+					"src": "/img/projects/kiwa/reservation-light.png",
+					"title": "Reservation - Light",
+					"subtitle": "A preview of the reservation page in light mode."
+				},
+				{
+					"src": "/img/projects/kiwa/faq-dark.png",
+					"title": "FAQ - Dark",
+					"subtitle": "A preview of the frequently asked questions page in dark mode."
+				},
+				{
+					"src": "/img/projects/kiwa/faq-light.png",
+					"title": "FAQ - Light",
+					"subtitle": "A preview of the frequently asked questions page in light mode."
+				},
+				{
+					"src": "/img/projects/kiwa/mobile.png",
+					"title": "Mobile",
+					"subtitle": "Mobile compatibility for the website."
+				},
+				{
+					"src": "/img/projects/kiwa/localization.png",
+					"title": "Localization",
+					"subtitle": "Proprietary dynamic localization."
+				},
+				{
+					"src": "/img/projects/kiwa/filtering.png",
+					"title": "Filtering",
+					"subtitle": "Advanced menu item filtering."
+				}
+			]
+		},
 		{
 			"name": "Unbound",
 			"id": "unbound",
@@ -48,10 +177,11 @@
 				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
 				"text": "Production"
 			},
+			"repository": "https://github.com/unbound-mod",
+			"url": "https://unbound.rip",
 			"overview": [
-				"Unbound is an open-source transformative modification designed to empower users of the Discord mobile app with unprecedented levels of customization. Offering a rich array of features, from plug-ins to themes, fonts, and icon packs, Unbound redefines the user experience, providing a platform for personalization unlike any other."
+				"Unbound is an open-source modification designed to add functionality to the Discord mobile app with unprecedented levels of customization. Offering a rich array of features from plug-ins to themes, fonts, and icon packs, Unbound redefines the user experience, providing a platform for personalization unlike any other."
 			],
-			"predecessor": "enmity",
 			"responsibilities": [
 				"Responsibilities here."
 			],
@@ -59,7 +189,7 @@
 				"TypeScript",
 				"Git",
 				"React",
-				"Tailwind CSS",
+				"Tailwind",
 				"Go"
 			],
 			"solutions": [
@@ -100,51 +230,8 @@
 					"src": "/img/projects/unbound/thumbnail.png",
 					"title": "Themes",
 					"subtitle": "Customizable user-created themes to alter the appearance of the app."
-				},
-				{
-					"src": "/img/projects/kiwa/thumbnail.png",
-					"title": "Plugins",
-					"subtitle": "Addons featuring unlimited additional functionality. The world is your limit."
 				}
 			]
-		},
-		{
-			"name": "Kiwa",
-			"id": "kiwa",
-			"type": "Website",
-			"url": "https://kiwasushi.vercel.app/",
-			"timeFrame": "Jan 2023 - Jan 2024",
-			"badge": {
-				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
-				"text": "Production"
-			},
-			"overview": [
-				"Kiwa is an Aix-en-Provence-based Asian fusion restaurant.",
-				"This project takes a modern approach to web design by using a monochrome style and emphasising the cuisine rather than the website.",
-				"The website is available in both French and English, with a language changer that automatically selects the language of the website based on the user's operating system/browser preferences.",
-				"The app features 4 sections: Home, a menu section, a reservations section and a FAQ section.",
-				"This project is built for both mobile and desktop. By using Tailwind CSS, I am able to control breakpoint-based styling effortlessly allowing me to easily ensure that the mobile experience is consistent."
-			],
-			"responsibilities": [
-				"It makes use of a proprietary internationalisation implementation that is similar to the abilities of certain famous React.js frameworks.",
-				"This project takes advantage of Chrome's View Transitions API, which allows for seamless transitions throughout the website, such as when switching between dark and bright modes.",
-				"Under the hood, the website uses Radix UI as the base for its components, providing accessibility to its users."
-			],
-			"technologies": [
-				"React",
-				"TypeScript",
-				"JavaScript",
-				"Tailwind CSS",
-				"Vite",
-				"Git",
-				"Radix UI"
-			],
-			"icon": {
-				"path": "/img/projects/kiwa/icon.png",
-				"styles": "ml-2"
-			},
-			"thumbnail": "/img/projects/kiwa/thumbnail.png",
-			"images": []
 		},
 		{
 			"name": "Enmity",
@@ -168,135 +255,5 @@
 			"thumbnail": "/img/projects/enmity/thumbnail.png",
 			"images": []
 		}
-	],
-	"technologies": {
-		"order": [
-			"language",
-			"database",
-			"framework",
-			"tooling"
-		],
-		"items": [
-			{
-				"icon": "TypeScript",
-				"name": "TypeScript",
-				"type": "language"
-			},
-			{
-				"icon": "JavaScript",
-				"name": "JavaScript",
-				"type": "language"
-			},
-			{
-				"icon": "Go",
-				"name": "Go",
-				"type": "language"
-			},
-			{
-				"icon": "Kotlin",
-				"name": "Kotlin",
-				"type": "language"
-			},
-			{
-				"icon": "Python",
-				"name": "Python",
-				"type": "language"
-			},
-			{
-				"icon": "ObjectiveC",
-				"name": "Objective C",
-				"type": "language"
-			},
-			{
-				"icon": "Swift",
-				"name": "Swift",
-				"type": "language"
-			},
-			{
-				"icon": "HTML",
-				"name": "HTML",
-				"type": "language"
-			},
-			{
-				"icon": "CSS",
-				"name": "CSS",
-				"type": "language"
-			},
-			{
-				"icon": "PostgreSQL",
-				"name": "PostgreSQL",
-				"type": "database"
-			},
-			{
-				"icon": "Redis",
-				"name": "Redis",
-				"type": "database"
-			},
-			{
-				"icon": "MongoDB",
-				"name": "MongoDB",
-				"type": "database"
-			},
-			{
-				"icon": "Firebase",
-				"name": "Firebase",
-				"type": "database"
-			},
-			{
-				"icon": "SQLite",
-				"name": "SQLite",
-				"type": "database"
-			},
-			{
-				"icon": "React",
-				"name": "React.js",
-				"type": "framework"
-			},
-			{
-				"icon": "Next",
-				"name": "Next.js",
-				"type": "framework"
-			},
-			{
-				"icon": "Tailwind",
-				"name": "Tailwind CSS",
-				"type": "framework"
-			},
-			{
-				"icon": "Svelte",
-				"name": "Svelte",
-				"type": "framework"
-			},
-			{
-				"icon": "SCSS",
-				"name": "SCSS/SASS",
-				"type": "framework"
-			},
-			{
-				"icon": "Electron",
-				"name": "Electron",
-				"type": "framework"
-			},
-			{
-				"icon": "Express",
-				"name": "Express.js",
-				"type": "framework"
-			},
-			{
-				"icon": "Git",
-				"name": "Git",
-				"type": "tooling"
-			},
-			{
-				"icon": "Docker",
-				"name": "Docker",
-				"type": "tooling"
-			},
-			{
-				"icon": "AWS",
-				"name": "AWS",
-				"type": "tooling"
-			}
-		]
-	}
+	]
 }

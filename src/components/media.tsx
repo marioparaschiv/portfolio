@@ -58,7 +58,6 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 		},
 	});
 
-	const uuid = useMemo(() => crypto.randomUUID(), []);
 	const items = useMemo(() => {
 		const result: typeof images = [];
 
@@ -233,6 +232,7 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 						<div className='border-neutral-700 bg-neutral-900 shadow-lg mx-6 sm:mx-0 border rounded-2xl'>
 							<input
 								type='text'
+								autoFocus={false}
 								placeholder='Search...'
 								className='z-20 border-neutral-800 bg-transparent px-6 sm:px-7 py-3 sm:py-4 border-b w-full text-sm text-white placeholder:text-neutral-500 sm:text-base outline-none'
 								onChange={(event) => setSearch(event.target.value)}
@@ -256,7 +256,6 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 								</div>}
 								{items.map((image, index) => <div
 									key={image.src + index}
-									data-hover-uuid={uuid}
 									className='relative z-10 flex items-center gap-3 p-1.5 sm:p-2 cursor-pointer'
 									ref={function (r) {
 										if (hovered === index) {
@@ -283,7 +282,6 @@ function Media({ images, footer = {}, ...props }: MediaProps) {
 											decoding='async'
 											onError={(event) => (event.target as HTMLImageElement).src = '/img/projects/fallback.png'}
 											src={image.src}
-											data-nimg='fill'
 											className='shadow-none border-none max-w-none object-cover outline-none scale-[1.02]'
 											style={{ position: 'absolute', height: '100%', width: '100%', inset: 0, color: 'transparent' }}>
 										</img>

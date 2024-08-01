@@ -1,9 +1,9 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
 import Typography from '~/components/typography';
+import { ArrowRight, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Page } from '~/components/layout';
-import { ArrowRight, Code } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import Button from '~/components/button';
 import { cn, median } from '~/utils';
 import config from '@config.json';
@@ -12,18 +12,23 @@ export const path = '/projects';
 export const element = Projects;
 
 export const showInHeader = true;
-export const headerOrder = 3;
-
+export const headerOrder = 2;
 
 function Projects() {
-	return <Page section='Projects' className='flex justify-center items-center p-0 min-h-dvh overflow-hidden'>
-		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 m-auto zoom-in-105 animate-in duration-500 fade-in-0'>
-			{import.meta.env.DEV ? <Carousel className='mt-5 h-full' opts={{
-				align: 'center',
-				startIndex: config.projects.length % 2 === 0 ? config.projects.length / 2 : median([...new Array(config.projects.length).keys()]),
-				skipSnaps: true,
-				loop: true
-			}}>
+	return <div className='flex min-h-[calc(100dvh-5dvh)] justify-center items-center p-0 overflow-clip'>
+		<Helmet>
+			<title>Projects » {config.name}</title>
+		</Helmet>
+		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 zoom-in-105 animate-in duration-500 fade-in-0'>
+			{import.meta.env.DEV ? <Carousel
+				className='h-full'
+				opts={{
+					align: 'center',
+					startIndex: config.projects.length % 2 === 0 ? config.projects.length / 2 : median([...new Array(config.projects.length).keys()]),
+					skipSnaps: true,
+					loop: true
+				}}
+			>
 				<div className='flex flex-col'>
 					<CarouselContent className='[&>div]:flex [&>div]:justify-center [&>div]:items-center'>
 						{config.projects.map((project, index) => <CarouselItem key={index}>
@@ -45,7 +50,7 @@ function Projects() {
 				</Typography>
 			</>}
 		</div>
-	</Page>;
+	</div>;
 }
 
 function Project(props: ArrayToTuple<typeof config.projects>) {
@@ -84,10 +89,10 @@ function Project(props: ArrayToTuple<typeof config.projects>) {
 					<Typography tag='h3' margin={false} padding={false} border={false}>
 						{props.name}
 					</Typography>
-					<Typography tag='h5' className='font-normal text-foreground-secondary text-lg'>
+					<Typography tag='h5' className='font-normal text-foreground/80 text-lg'>
 						{props.type}
 					</Typography>
-					<Typography tag='h6' border={false} className='font-normal text-foreground-secondary/60 text-xs'>
+					<Typography tag='h6' border={false} className='font-normal text-foreground/70 text-xs'>
 						{props.timeFrame}
 					</Typography>
 				</div>

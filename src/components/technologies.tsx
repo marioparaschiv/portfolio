@@ -1,8 +1,7 @@
 import { useBreakpoint } from '~/components/hooks';
-import * as Icons from '~/components/icons';
-import type { SVGProps } from 'react';
 import config from '@config.json';
 import { cn } from '~/utils';
+import { Technologies } from '~/constants';
 
 interface TechnologiesProps extends React.HTMLProps<HTMLSpanElement> {
 	technologies?: string[];
@@ -10,25 +9,25 @@ interface TechnologiesProps extends React.HTMLProps<HTMLSpanElement> {
 	identifierProps?: React.ComponentProps<'span'>;
 }
 
-function Technologies({ order = config.technologies.order, technologies = config.technologies.items.map(i => i.name), ...props }: TechnologiesProps) {
+function TechnologiesList({ order = config.technologiesOrder, technologies, ...props }: TechnologiesProps) {
 	const isMedium = useBreakpoint('md');
 
 	if (!technologies || !Array.isArray(technologies)) return null;
 
-	const entities = technologies.map(t => config.technologies.items.find(i => i.name === t)).filter(Boolean);
+	const entities = technologies.map(t => Technologies.find(i => i.name === t)).filter(Boolean);
 	const items = order ? entities.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type)) : entities;
 
-	return <span {...props} className={cn('grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-4', props.className)}>
+	return <span {...props} className={cn('grid lg:grid-cols-[repeat(auto-fill,minmax(110px,1fr))] md:g:grid-cols-[repeat(auto-fill,minmax(100px,1fr))] grid-cols-[repeat(auto-fill,minmax(90px,1fr))] gap-4', props.className)}>
 		{items.map((technology) => {
-			const Icon = Icons[technology.icon as keyof typeof Icons] as React.ComponentType<SVGProps<SVGSVGElement>>;
+			const Icon = technology.icon;
 
-			return <div className='flex items-center gap-3 ' key={technology.name}>
+			return <div className='flex items-center gap-2 md:gap-3' key={technology.name}>
 				{Icon && <Icon
 					className='text-neutral-200 shrink-0'
 					width={isMedium ? 18 : 14}
 					height={isMedium ? 18 : 14}
 				/>}
-				<span {...props.identifierProps ?? {}} className={cn('truncate text-xs md:text-sm', props.identifierProps?.className)}>
+				<span {...props.identifierProps ?? {}} className={cn('truncate text-sm', props.identifierProps?.className)}>
 					{technology.name}
 				</span>
 			</div>;
@@ -36,4 +35,4 @@ function Technologies({ order = config.technologies.order, technologies = config
 	</span>;
 }
 
-export default Technologies;
+export default TechnologiesList;

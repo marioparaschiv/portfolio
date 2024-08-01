@@ -1,2 +1,2 @@
-export { default as useMousePosition } from './useMousePosition';
-export { default as useBreakpoint } from './useBreakpoint';
+export { default as useMediaQuery } from './use-media-query';
+export { default as useBreakpoint } from './use-breakpoint';
