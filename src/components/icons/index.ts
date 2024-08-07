@@ -10,6 +10,7 @@ export { default as Electron } from './electron';
 export { default as RadixUI } from './radix-ui';
 export { default as MongoDB } from './mongodb';
 export { default as Express } from './express';
+export { default as Rollup } from './rollup';
 export { default as ShadCN } from './shadcn';
 export { default as Docker } from './docker';
 export { default as Svelte } from './svelte';

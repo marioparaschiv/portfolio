@@ -12,6 +12,16 @@ export const Technologies = [
 		type: 'language'
 	},
 	{
+		icon: Icons.Go,
+		name: 'Go',
+		type: 'language'
+	},
+	{
+		icon: Icons.ObjectiveC,
+		name: 'Objective C',
+		type: 'language'
+	},
+	{
 		icon: Icons.Zod,
 		name: 'Zod',
 		type: 'library'
@@ -30,11 +40,6 @@ export const Technologies = [
 		icon: Icons.RadixUI,
 		name: 'Radix UI',
 		type: 'library',
-	},
-	{
-		icon: Icons.Go,
-		name: 'Go',
-		type: 'language'
 	},
 	{
 		icon: Icons.PostgreSQL,
@@ -64,6 +69,11 @@ export const Technologies = [
 	{
 		icon: Icons.React,
 		name: 'React',
+		type: 'framework'
+	},
+	{
+		icon: Icons.React,
+		name: 'React Native',
 		type: 'framework'
 	},
 	{
@@ -114,6 +124,11 @@ export const Technologies = [
 	{
 		icon: Icons.Vite,
 		name: 'Vite',
+		type: 'tooling'
+	},
+	{
+		icon: Icons.Rollup,
+		name: 'Rollup',
 		type: 'tooling'
 	},
 	{

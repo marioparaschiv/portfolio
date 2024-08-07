@@ -6,10 +6,10 @@ import Typography from '~/components/typography';
 import { Helmet } from 'react-helmet-async';
 import Button from '~/components/button';
 import Media from '~/components/media';
-import Card from '~/components/card';
 import Tag from '~/components/tag';
 import { useEffect } from 'react';
 import config from '@config.json';
+import Card from '~/components/card';
 
 export const path = '/projects/:id';
 export const element = Project;
@@ -45,10 +45,10 @@ function Project() {
 					<ArrowLeft size={12} />	Browse
 				</Button>
 				<div className='ml-auto flex gap-4'>
-					{project.url && <Link className='flex justify-end items-center gap-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.repository}>
+					{project.repository && <Link className='flex justify-end items-center gap-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.repository}>
 						<span className='animate-underline'>Source</span> <ArrowTopRightIcon />
 					</Link>}
-					{project.repository && <Link className='flex justify-end items-center gap-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.url}>
+					{project.url && <Link className='flex justify-end items-center gap-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white' target='_blank' to={project.url}>
 						<span className='animate-underline'>Website</span> <ArrowTopRightIcon />
 					</Link>}
 				</div>
@@ -67,7 +67,7 @@ function Project() {
 								<Typography tag='h1' className='font-bold text-white text-xl lg:text-2xl'>
 									{project.name}
 								</Typography>
-								<Typography tag='p' className='font-medium text-neutral-400 text-sm md:text-base lg:text-xl'>
+								<Typography tag='p' className='font-medium text-neutral-400 text-sm md:text-base lg:text-lg'>
 									{project.type}
 								</Typography>
 							</div>
@@ -77,26 +77,6 @@ function Project() {
 						</div>
 					</div>
 					<div className='flex flex-col gap-6 md:gap-5 lg:gap-8'>
-						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='font-bold text-white text-lg lg:text-2xl'>
-								Overview
-							</Typography>
-							<Typography tag='p' className='font-medium text-neutral-400 text-sm lg:text-base truncate whitespace-pre-wrap'>
-								{project.overview.join('\n') || 'None.'}
-							</Typography>
-						</div>
-						{project.solutions?.length && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
-							<Typography tag='h1' className='font-bold text-white text-lg lg:text-2xl'>
-								Solutions
-							</Typography>
-							<div className='grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-2 font-medium text-neutral-400 text-sm lg:text-base truncate whitespace-pre-wrap'>
-								{project.solutions.map((solution, index) => <div className='flex gap-2'>
-									<Link key={solution.url + index} to={solution.url} className='focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-white text-blue-500 animate-underline'>
-										{solution.name}
-									</Link>
-								</div>)}
-							</div>
-						</div>}
 						{successor && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
 								Successor
@@ -126,6 +106,26 @@ function Project() {
 									</div>
 								</Card>
 							</Link>
+						</div>}
+						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
+							<Typography tag='h1' className='font-bold text-white text-lg lg:text-2xl'>
+								Overview
+							</Typography>
+							<Typography tag='p' className='font-medium text-neutral-400 text-sm lg:text-base truncate whitespace-pre-wrap'>
+								{project.overview.join('\n') || 'None.'}
+							</Typography>
+						</div>
+						{project.solutions?.length && <div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
+							<Typography tag='h1' className='font-bold text-white text-lg lg:text-2xl'>
+								Solutions
+							</Typography>
+							<div className='grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-2 font-medium text-neutral-400 text-sm lg:text-base truncate whitespace-pre-wrap'>
+								{project.solutions.map((solution, index) => <div className='flex gap-2'>
+									<Link key={solution.url + index} to={solution.url} className='focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-white text-blue-500 animate-underline'>
+										{solution.name}
+									</Link>
+								</div>)}
+							</div>
 						</div>}
 						<div className='flex flex-col gap-1.5 md:gap-3 lg:gap-5'>
 							<Typography tag='h1' className='font-bold text-base text-white md:text-lg lg:text-2xl'>
