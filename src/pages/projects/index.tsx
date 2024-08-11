@@ -1,9 +1,9 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
 import Typography from '~/components/typography';
-import { ArrowRight, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ArrowRight } from 'lucide-react';
 import Button from '~/components/button';
 import { cn, median } from '~/utils';
 import config from '@config.json';
@@ -20,7 +20,7 @@ function Projects() {
 			<title>Projects » {config.name}</title>
 		</Helmet>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 zoom-in-105 animate-in duration-500 fade-in-0'>
-			{import.meta.env.DEV ? <Carousel
+			{/* {import.meta.env.DEV ? */} <Carousel
 				className='h-full'
 				opts={{
 					align: 'center',
@@ -43,12 +43,12 @@ function Projects() {
 						<CarouselNext />
 					</div>
 				</div>
-			</Carousel> : <>
+			</Carousel> {/* : <>
 				<Code className='text-neutral-400' size={256} strokeWidth={2} />
 				<Typography tag='h1' className='bg-clip-text bg-gradient-to-br from-white to-neutral-500 font-semibold text-transparent'>
 					Under construction.
 				</Typography>
-			</>}
+			</>} */}
 		</div>
 	</div>;
 }
