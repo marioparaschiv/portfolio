@@ -22,6 +22,16 @@ export const Technologies = [
 		type: 'language'
 	},
 	{
+		icon: Icons.Rust,
+		name: 'Rust',
+		type: 'language'
+	},
+	{
+		icon: Icons.Kotlin,
+		name: 'Kotlin',
+		type: 'language'
+	},
+	{
 		icon: Icons.Zod,
 		name: 'Zod',
 		type: 'library'
@@ -69,6 +79,11 @@ export const Technologies = [
 	{
 		icon: Icons.React,
 		name: 'React',
+		type: 'framework'
+	},
+	{
+		icon: Icons.Solid,
+		name: 'SolidJS',
 		type: 'framework'
 	},
 	{

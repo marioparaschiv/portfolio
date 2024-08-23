@@ -1,6 +1,6 @@
 {
 	"name": "Mario Paraschiv",
-	"subtext": "A self-taught Full-Stack Developer specializing in TypeScript.",
+	"subtext": "Self-taught Full-Stack Developer specializing in TypeScript.",
 	"location": "London, United Kingdom",
 	"resume": "/Resume.pdf",
 	"links": {
@@ -175,46 +175,30 @@
 			"type": "Mobile Application",
 			"timeFrame": "Jan 2023 - Present",
 			"badge": {
-				"styles": "bg-green-600/30 border-green-600/40 text-green-600",
-				"text": "Production"
+				"styles": "bg-blue-600/30 border-blue-600/40 text-blue-600",
+				"text": "In Development"
 			},
 			"repository": "https://github.com/unbound-mod",
 			"url": "https://unbound.rip",
 			"overview": [
-				"Unbound is an open-source modification designed to add functionality to the Discord mobile app with unprecedented levels of customization. Offering a rich array of features from plug-ins to themes, fonts, and icon packs, Unbound redefines the user experience, providing a platform for personalization unlike any other."
+				"Unbound is an open-source modification designed to add functionality to the Discord mobile app with unprecedented levels of customization. Offering a rich array of features from plug-ins to themes, fonts, and icon packs with a write once run everywhere approach, Unbound redefines the user experience, providing a platform agnostic experience for personalization unlike any other."
 			],
 			"responsibilities": [
-				"To do."
+				"As the lead developer and owner of Unbound, I handled key technical aspects of the project, including reverse-engineering the Discord mobile app to enable features like plug-ins, themes, and icon packs.",
+				"",
+				"I developed loaders for code execution, created bundle patchers for app executables, and ensured compatibility across platforms. I worked with team members on the client bundle, making design decisions to enhance both user and developer experience. I also managed the team to ensure we delivered a consistent product across all platforms."
 			],
 			"technologies": [
 				"TypeScript",
 				"Git",
 				"React",
 				"Tailwind",
+				"Rollup",
+				"Objective C",
+				"Rust",
+				"SolidJS",
+				"Kotlin",
 				"Go"
-			],
-			"solutions": [
-				{
-					"type": "link",
-					"name": "Client",
-					"url": "https://github.com/unbound-mod/client",
-					"description": "The main client code that executes once the loader injects it into the app."
-				},
-				{
-					"type": "link",
-					"name": "Backend",
-					"url": "https://github.com/unbound-mod/backend"
-				},
-				{
-					"type": "link",
-					"name": "Patcher iOS",
-					"url": "https://github.com/unbound-mod/patcher-ios"
-				},
-				{
-					"type": "link",
-					"name": "Web",
-					"url": "https://github.com/unbound-mod/web"
-				}
 			],
 			"icon": {
 				"path": "/img/projects/unbound/icon.png",

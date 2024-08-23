@@ -20,6 +20,8 @@ export { default as Python } from './python';
 export { default as React } from './react';
 export { default as Swift } from './swift';
 export { default as Redis } from './redis';
+export { default as Solid } from './solid';
+export { default as Rust } from './rust';
 export { default as Vite } from './vite';
 export { default as Next } from './next';
 export { default as SCSS } from './scss';
