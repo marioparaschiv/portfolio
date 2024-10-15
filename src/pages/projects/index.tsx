@@ -1,4 +1,5 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from '~/components/carousel';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import Typography from '~/components/typography';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,7 @@ import { ArrowRight } from 'lucide-react';
 import Button from '~/components/button';
 import { cn, median } from '~/utils';
 import config from '@config.json';
+
 
 export const path = '/projects';
 export const element = Projects;
@@ -21,6 +23,7 @@ function Projects() {
 		</Helmet>
 		<div className='slide-in-from-bottom-8 flex flex-col items-center gap-16 zoom-in-105 animate-in duration-500 fade-in-0'>
 			{/* {import.meta.env.DEV ? */} <Carousel
+				plugins={[WheelGesturesPlugin()]}
 				className='h-full'
 				opts={{
 					align: 'center',

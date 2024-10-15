@@ -25,6 +25,7 @@
 		"cva": "1.0.0-beta.1",
 		"embla-carousel": "^8.1.7",
 		"embla-carousel-react": "^8.1.7",
+		"embla-carousel-wheel-gestures": "^8.0.1",
 		"lucide-react": "^0.417.0",
 		"postcss": "^8.4.40",
 		"react": "^18.3.1",
