@@ -1,6 +1,6 @@
 {
 	"name": "Mario Paraschiv",
-	"subtext": "Self-taught Full-Stack Developer specializing in TypeScript.",
+	"subtext": "Self-taught Software Engineer specializing in TypeScript.",
 	"location": "London, United Kingdom",
 	"resume": "/Resume.pdf",
 	"links": {
@@ -30,7 +30,7 @@
 	],
 	"about": {
 		"information": [
-			"Hi! I'm Mario, a self-taught Full-Stack Developer based in London, specialising in TypeScript, Go, Next.js, React.js, and SSR / SPA / SaaS applications.",
+			"Hi! I'm Mario, a self-taught Software Engineer based in London, specialising in TypeScript, Go, Next.js, React.js, and SSR / SPA / SaaS applications.",
 			"",
 			"I spend my free time tinkering with existing software to extend its functionality, along with learning how tools and frameworks work internally to better optimise my work."
 		],
