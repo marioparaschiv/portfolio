@@ -1,12 +1,12 @@
-import { ExternalLink, Github, Linkedin, Mail, SquareArrowOutUpRight, Twitter } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Typography from '~/components/typography';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Card from '~/components/card';
-import Tag from '~/components/tag';
 import config from '@config.json';
 import { cn } from '~/utils';
 import { cva } from 'cva';
+
 
 export const path = '/contact';
 export const element = Contact;
@@ -25,11 +25,6 @@ function Contact() {
 					Contact
 				</Typography>
 			</div>
-			<a className='group focus-visible:outline-none focus-visible:ring-0' target='_blank' href={config.resume}>
-				<Tag className='group-focus-visible:ring-2 group-focus-visible:ring-white gap-2 hover:bg-brand/20 hover:border-brand/50 cursor-pointer'>
-					Resume <SquareArrowOutUpRight size={12} />
-				</Tag>
-			</a>
 			<div className='gap-2 md:gap-6 grid grid-cols-1 md:grid-cols-2 m-4 sm:m-0 p-4 w-full md:w-auto'>
 				<ContactCard
 					name='Email'
