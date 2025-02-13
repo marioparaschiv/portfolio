@@ -177,7 +177,7 @@
 				"styles": "bg-blue-600/30 border-blue-600/40 text-blue-600",
 				"text": "In Development"
 			},
-			"repository": "https://github.com/unbound-mod",
+			"repository": "https://github.com/unbound-app",
 			"url": "https://unbound.rip",
 			"overview": [
 				"Unbound is an open-source modification designed to add functionality to the Discord mobile app with unprecedented levels of customization. Offering a rich array of features from plug-ins to themes, fonts, and icon packs with a write once run everywhere approach, Unbound redefines the user experience, providing a platform agnostic experience for personalization unlike any other."
